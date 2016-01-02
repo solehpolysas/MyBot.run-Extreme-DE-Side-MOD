@@ -1,0 +1,3 @@
+Fix for FF skipping Giants on top sides by Drei3000 : https://mybot.run/forums/thread-5625-post-58576.html#pid58576
+More Human like FF by Dukkobiya, https://mybot.run/forums/thread-5625-post-75279.html#pid75279
+
