@@ -13,21 +13,38 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-Func countEarth() ;Applies the data from config to the controls in GUI
-	Local $numEarthSpells = 0
+Func unitCount($unitName)
+	Local $numUnits = 0
+	Local $unitText = getTranslatedTroopName($unitName)
+
 	For $j = 0 To UBound($atkTroops) - 1
-		If $atkTroops[$j][0] = $eESpell Then
+		If $atkTroops[$j][0] = $unitName Then
+			$numUnits = $atkTroops[$j][1]
+			SetLog($numUnits & " " & $unitText & "'s in slot " & $j)
+		EndIf
+	Next
+
+	Return $numSpells
+EndFunc
+
+Func spellCount($spellName) ; Gets a count of the number of spells of the type specified.
+	Local $numSpells = 0
+	Local $spellText = getTranslatedTroopName($spellName)
+
+	For $j = 0 To UBound($atkTroops) - 1
+		If $atkTroops[$j][0] = $spellName Then
 			;With donate spells, there might be more than one slot with earth spell
-			If $CCSpellType = $eESpell Then
+			If $CCSpellType = $spellName Then
+
 				; Clan castle spell is earthquake so add one extra to the total
-				SetLog($atkTroops[$j][1] & " earthquake spells in slot " & $j & " and 1 earthquake spell in the clan castle")
-				$numEarthSpells = $numEarthSpells + $atkTroops[$j][1] + 1
+				$numSpells = $atkTroops[$j][1] + 1
+				SetLog(($numSpells - 1) & " " & $spellText & "'s in slot " & $j & " and 1 " & $spellText & " in the Clan Castle")
 			Else
-				SetLog($atkTroops[$j][1] & " earthquake spells in slot " & $j)
-				$numEarthSpells = $numEarthSpells + $atkTroops[$j][1]
+				$numSpells = $atkTroops[$j][1]
+				SetLog($numSpells & " " & $spellText & "'s in slot " & $j)
 			EndIf
 		EndIf
 	Next
-	Return $numEarthSpells
-EndFunc   ;==>countEarth
 
+	Return $numSpells
+EndFunc   ;==>spellCount

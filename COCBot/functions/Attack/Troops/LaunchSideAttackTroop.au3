@@ -15,7 +15,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 			Select
 				 Case $listInfoDeploy[$i][0] = "HEROES"
 					 dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, $Queen, $Warden)
-				Case $listInfoDeploy[$i][0] = $eKing
+				 Case $listInfoDeploy[$i][0] = $eKing
 					 If $LBBKEQFilter = 0 OR $earthquakeDropped = 1 Then
 					    dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, -1, -1)
 					 Else
@@ -28,6 +28,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 				 Case $listInfoDeploy[$i][0] = $eCastle Or $listInfoDeploy[$i][0] = "CC"
 					 dropCC($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $CC)
 				 Case $listInfoDeploy[$i][0] = $eRSpell Or $listInfoDeploy[$i][0] = $eHSpell Or $listInfoDeploy[$i][0] = $eJSpell Or $listInfoDeploy[$i][0] = $eHaSpell Or $listInfoDeploy[$i][0] = $eFSpell Or $listInfoDeploy[$i][0] = $ePSpell
+					 spellCount($listInfoDeploy[$i][0])
 					 SetLog("Dropping spell " & $listInfoDeploy[$i][0] & " at " & $listInfoDeploy[$i][4] & "% distance")
 					 If $BuildingLoc = 1 Then
 						 ;drop spell towards the DE storage
@@ -43,7 +44,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 				 Case $listInfoDeploy[$i][0] = $eESpell
 					 SetLog("Dropping earth at " & $listInfoDeploy[$i][4] & "% distance")
 					 ;4 quakes or go home
-					 Local $numEarthSpells = countEarth()
+					 Local $numEarthSpells = spellCount($eESpell)
 					 If $numEarthSpells >= 4 Then
 						 If $BuildingLoc = 1 Then
 							 ;drop spell towards the DE storage
