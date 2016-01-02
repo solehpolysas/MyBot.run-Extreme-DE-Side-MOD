@@ -22,7 +22,7 @@ Func LiveRoyalFilter()
 					$King = $i
 				EndIf
 			Next
-			If $king >= 0 AND $LBBKEQFilter = 1 AND countEarth() < 4 Then
+			If $king >= 0 AND $LBBKEQFilter = 1 AND spellCount($eESpell) < 4 Then
 				$king = -1
 				SetLog("King present, but not 4 earthquakes.  Save the king!")
 			EndIf
