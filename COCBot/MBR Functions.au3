@@ -22,6 +22,7 @@
 #include "functions\Attack\AttackReport.au3"
 #include "functions\Attack\BuildingSide.au3"
 #include "functions\Attack\CheckHeroesHealth.au3"
+#include "functions\Attack\countEarth.au3"
 #include "functions\Attack\dropCC.au3"
 #include "functions\Attack\dropHeroes.au3"
 #include "functions\Attack\dropSpell.au3"
