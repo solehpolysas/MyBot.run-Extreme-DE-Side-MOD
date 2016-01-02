@@ -9,13 +9,18 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 		Local $RandomEdge = $Edges[Round(Random(0, 3))]
 		Local $RandomXY = Round(Random(0, 4))
 	 EndIf
+	 Local $earthquakeDropped = 0
 	 For $i = 0 To UBound($listInfoDeploy) - 1
 		 if string($listInfoDeploy[$i][0]) <> $DeDeployEmptyString Then
 			Select
 				 Case $listInfoDeploy[$i][0] = "HEROES"
 					 dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, $Queen, $Warden)
-				 Case $listInfoDeploy[$i][0] = $eKing
-					 dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, -1, -1)
+				Case $listInfoDeploy[$i][0] = $eKing
+					 If $LBBKEQFilter = 0 OR $earthquakeDropped = 1 Then
+					    dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, -1, -1)
+					 Else
+						SetLog("Saving king for earthquakes")
+					 EndIf
 				 Case $listInfoDeploy[$i][0] = $eQueen
 					 dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], -1, $Queen, -1)
 				 Case $listInfoDeploy[$i][0]= $eWarden
@@ -38,20 +43,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 				 Case $listInfoDeploy[$i][0] = $eESpell
 					 SetLog("Dropping earth at " & $listInfoDeploy[$i][4] & "% distance")
 					 ;4 quakes or go home
-					 Local $numEarthSpells = 0
-					 For $j = 0 To UBound($atkTroops) - 1
-						 If $atkTroops[$j][0] = $eESpell Then
-							;With donate spells, there might be more than one slot with earth spell
-							If $CCSpellType = $eESpell Then
-								; Clan castle spell is earthquake so add one extra to the total
-								SetLog($atkTroops[$j][1] & " earthquake spells in slot " & $j & " and 1 earthquake spell in the clan castle")
-								$numEarthSpells = $numEarthSpells + $atkTroops[$j][1] + 1
-							Else
-								SetLog($atkTroops[$j][1] & " earthquake spells in slot " & $j)
-								$numEarthSpells = $numEarthSpells + $atkTroops[$j][1]
-							EndIf
-						 EndIf
-					 Next
+					 Local $numEarthSpells = countEarth()
 					 If $numEarthSpells >= 4 Then
 						 If $BuildingLoc = 1 Then
 							 ;drop spell towards the DE storage
@@ -64,6 +56,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 									   ceiling((((100-$listInfoDeploy[$i][4])*$RandomEdge[$RandomXY][1])+($listInfoDeploy[$i][4]*313))/100), _
 									   $listInfoDeploy[$i][0])
 						 EndIf
+						 $earthquakeDropped = 1
 					 Else
 						 SetLog("Only " & $numEarthSpells & " earthquakes available.  Waiting for 4.")
 					 EndIf

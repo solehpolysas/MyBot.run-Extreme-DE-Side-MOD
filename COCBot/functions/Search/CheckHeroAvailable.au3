@@ -9,7 +9,7 @@ Func LiveRoyalFilter()
 		EndIf
 		If $LBAQFilter = 1 Then ;Checking for aq if aq filter enabled.
 			$Queen = -1
-			For $i = 0 To 8
+			For $i = 0 To 11
 				If $atkTroops[$i][0] = $eQueen Then
 					$Queen = $i
 				EndIf
@@ -17,11 +17,15 @@ Func LiveRoyalFilter()
 		EndIf
 		If $LBBKFilter = 1 Then ;Checking for bk if bk filter enabled.
 			$King = -1
-			For $i = 0 To 8
+			For $i = 0 To 11
 				If $atkTroops[$i][0] = $eKing Then
 					$King = $i
 				EndIf
 			Next
+			If $king >= 0 AND $LBBKEQFilter = 1 AND countEarth() < 4 Then
+				$king = -1
+				SetLog("King present, but not 4 earthquakes.  Save the king!")
+			EndIf
 		EndIf
 
 		If $Queen = -1 Or $King = -1 Then ;If either bk or aq not found and thier filter is on then turn on search filter.

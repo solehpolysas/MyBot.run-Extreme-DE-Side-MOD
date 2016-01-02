@@ -258,6 +258,11 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	Else
 		GUICtrlSetState($chkLBBKFilter, $GUI_UNCHECKED)
 	EndIf
+	If $LBBKEQFilter = 1 Then
+		GUICtrlSetState($chkLBBKEQFilter, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkLBBKEQFilter, $GUI_UNCHECKED)
+	EndIf
 	If $LBAQFilter = 1 Then
 		GUICtrlSetState($chkLBAQFilter, $GUI_CHECKED)
 	Else
