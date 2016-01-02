@@ -271,7 +271,7 @@ Func runBot() ;Bot that runs everything in order
 			If _Sleep($iDelayRunBot3) Then Return
 			checkMainScreen(True)
 			If $Restart = True Then ContinueLoop
-				If Number($iTrophyCurrent) > Number($itxtMaxTrophy+100) And $CommandStop = -1 Then
+				If Number($iTrophyCurrent) > Number($itxtMaxTrophy) And $CommandStop = -1 Then
 					DropTrophy()
 				Else
 					AttackMain()

@@ -14,7 +14,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func DropTrophy()
-	Local $iTrophyCurrent = getTrophyMainScreen($aTrophies[0], $aTrophies[1])
+	$iTrophyCurrent = getTrophyMainScreen($aTrophies[0], $aTrophies[1])
 	If $DebugSetlog = 1 Then SetLog("Trophy Count : " & $iTrophyCurrent, $COLOR_PURPLE)
     Local $dropSuccessful
 	Local $iCount, $RandomEdge, $RandomXY
