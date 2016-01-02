@@ -223,13 +223,13 @@ Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
     ElseIf $iChkDeploySettings[$iMatchMode] = 4 Then ;Four Finger deployment
         If $debugSetlog = 1 Then SetLog("ListDeploy for Four Finger attack", $COLOR_PURPLE)
 
-        Local $listInfoDeploy[11][5] = [[$eGiant, $nbSides, 1, 1, 2] _
+        Local $listInfoDeploy[11][5] = [[$eGiant, $nbSides, 1, 1, 1] _
             , [$eBarb, $nbSides, 1, 1, 0] _
             , [$eArch, $nbSides, 1, 1, 0] _
-            , [$eWall, $nbSides, 1, 1, 2] _
+            , [$eWall, $nbSides, 1, 1, 1] _
             , [$eGobl, $nbSides, 1, 2, 0] _
             , ["CC", 1, 1, 1, 1] _
-            , [$eHogs, $nbSides, 1, 1, 2] _
+            , [$eHogs, $nbSides, 1, 1, 1] _
             , [$eWiza, $nbSides, 1, 1, 0] _
             , [$eMini, $nbSides, 1, 1, 0] _
             , [$eGobl, $nbSides, 2, 2, 0] _
