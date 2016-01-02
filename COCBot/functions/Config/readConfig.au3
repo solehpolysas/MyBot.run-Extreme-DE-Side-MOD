@@ -630,7 +630,9 @@ Func readConfig() ;Reads config and sets it to the variables
 		$icmbTrophyMinProfile = IniRead($config, "profiles", "cmbTrophyMinProfile", "0")
 		$itxtMinTrophyAmount = IniRead($config, "profiles", "txtMinTrophyAmount", "1000")
 
-
+		; CoCStats
+		$ichkCoCStats = IniRead($config, "Stats", "chkCoCStats", "0")
+		$stxtAPIKey = IniRead($config, "Stats", "txtAPIKey", "")
 
 	Else
 		Return False

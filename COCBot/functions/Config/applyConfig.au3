@@ -1523,5 +1523,16 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbTrophyMinProfile, $icmbTrophyMinProfile)
 	GUICtrlSetData($txtMinTrophyAmount, $itxtMinTrophyAmount)
 
+	; CoCStats
+	If $ichkCoCStats = 1 Then
+		GUICtrlSetState($chkCoCStats, $GUI_CHECKED)
+		GUICtrlSetState($txtAPIKey, $GUI_ENABLE)
+	Else
+		GUICtrlSetState($chkCoCStats, $GUI_UNCHECKED)
+		GUICtrlSetState($txtAPIKey, $GUI_DISABLE)
+	EndIf
+	GUICtrlSetData($txtAPIKey, $stxtAPIKey)
+	chkCoCStats()
+	txtAPIKey()
 
 EndFunc   ;==>applyConfig

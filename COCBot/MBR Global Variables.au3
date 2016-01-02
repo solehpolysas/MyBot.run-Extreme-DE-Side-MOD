@@ -877,3 +877,8 @@ Global $cmbTHSpellType
 Global $cmbAttackbottomType
 Global $cmbDetectTrapedTH
 Global $cmbTroopComp
+
+; CoCStats
+Global $ichkCoCStats = 0
+Global $stxtAPIKey = ""
+Global $MyApiKey = ""

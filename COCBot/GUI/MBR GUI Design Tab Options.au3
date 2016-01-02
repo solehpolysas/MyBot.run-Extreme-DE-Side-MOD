@@ -22,7 +22,7 @@
             GUICtrlSetOnEvent(-1, "sldDeDistance")
 	  $x = 30
 	  $y = 150
-	  $grpStatsMisc = GUICtrlCreateGroup("Smart Zap Drill", $x - 20, $y - 20, 445, 70)
+	  $grpStatsMisc = GUICtrlCreateGroup("Smart Zap Drill", $x - 20, $y - 20, 445, 65)
 		 GUICtrlCreateIcon($pIconLib, $eIcnLightSpell, $x, $y, 24, 24)
 		 $chkSmartLightSpell = GUICtrlCreateCheckbox("Use Ligthning", $x +30, $y, -1, -1)
 			$txtTip = "Check this to drop lightning spells on DE drills"
@@ -58,7 +58,7 @@
     ;;;;;;;;;;;;;;;;;
     ;;; TROOP Deployment
     ;;;;;;;;;;;;;;;;;
-    Local $x = 10, $y = 200
+    Local $x = 10, $y = 195
 	;For now, the order of the troop string MUST match tne Global Enum for troop deployments
 	;The last entry should be $DeDeployEmptyString
 
@@ -96,11 +96,11 @@
     ; Convert the array into a string
     Local $troopString = _ArrayToString($aDeployTroopArray, "|")
 
-  	$grpToolboxOptions = GUICtrlCreateGroup("Troop Deployment", $x, $y, 445, 300)
+  	$grpToolboxOptions = GUICtrlCreateGroup("Troop Deployment", $x, $y, 445, 275)
 
-	$btnSave = GUICtrlCreateButton("Save", $x + 370, $y + 260, 60, 20 + 5)
+	$btnSave = GUICtrlCreateButton("Save", $x + 370, $y + 245, 60, 20 + 5)
 		GUICtrlSetOnEvent(-1, "btnSave")
-	$btnLoad = GUICtrlCreateButton("Load", $x + 300, $y + 260, 60, 20 + 5)
+	$btnLoad = GUICtrlCreateButton("Load", $x + 300, $y + 245, 60, 20 + 5)
 		GUICtrlSetOnEvent(-1, "btnLoad")
 		;IF $btnColor then GUICtrlSetBkColor(-1, 0x5CAD85)
 	    ;GUICtrlSetState(-1, $GUI_DISABLE)
@@ -340,3 +340,19 @@
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+$y += 260
+$grpCoCStats = GUICtrlCreateGroup("", $x, $y, 445, 35)
+    $y += 10
+	$chkCoCStats = GUICtrlCreateCheckbox("CoCStats Activate", $x+5 , $y , -1, -1)
+	$txtTip = "Activate sending raid results to CoCStats.com"
+	GUICtrlSetTip(-1, $txtTip)
+	GUICtrlSetOnEvent(-1, "chkCoCStats")
+	$x += 130
+    $lblAPIKey = GUICtrlCreateLabel("API Key :", $x, $y+5 , -1, 21, $SS_LEFT)
+	$txtAPIKey = GUICtrlCreateInput("", $x + 40, $y , 270, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
+	$txtTip = "Join in CoCStats.com and input API Key here"
+	GUICtrlSetTip(-1, $txtTip)
+    GUICtrlSetOnEvent(-1, "txtAPIKey")
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+GUICtrlCreateTabItem("")

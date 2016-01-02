@@ -1425,7 +1425,12 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
 	IniWrite($config, "profiles", "txtMinTrophyAmount", GUICtrlRead($txtMinTrophyAmount))
 
-
-
+	; CoCStats
+	If GUICtrlRead($chkCoCStats) = $GUI_CHECKED Then
+		IniWrite($config, "Stats", "chkCoCStats", "1")
+	Else
+		IniWrite($config, "Stats", "chkCoCStats", "0")
+	EndIf
+	IniWrite($config, "Stats", "txtAPIKey", GUICtrlRead($txtAPIKey))
 
 EndFunc   ;==>saveConfig
