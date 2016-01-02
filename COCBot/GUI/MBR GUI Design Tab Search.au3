@@ -414,6 +414,11 @@ $tabSearch = GUICtrlCreateTabItem("Search")
 				$txtTip = "Enable this so that when King is healing bot will use new search conditions for Live Bases"
 				GUICtrlSetTip(-1, $txtTip)
 				GUICtrlSetState(-1, $GUI_HIDE)
+				GUICtrlSetOnEvent(-1, "chkLBBKFilter")
+			$chkLBBKEQFilter = GUICtrlCreateCheckbox("Coordinate with EQ", $x + 70, $y + 70, -1, -1)
+				$txtTip = "Enable this so that when King and EQ will be used together"
+				GUICtrlSetTip(-1, $txtTip)
+				GUICtrlSetState(-1, $GUI_HIDE)
 			$grpLiveBaseConditionsQueen = GUICtrlCreateGroup("Queen Filter", $x - 20, $y + 110, 225, 125)
 			GUICtrlSetState (-1, $GUI_HIDE)
 			GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x +30, $y +160, 24, 24)

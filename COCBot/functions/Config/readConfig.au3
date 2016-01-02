@@ -167,6 +167,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ReduceTrophy = IniRead($config, "search", "reduceTrophy", "2")
 
 		$LBBKFilter = IniRead($config, "search", "LBBKFilter", "1")
+		$LBBKEQFilter = IniRead($config, "search", "LBBKEQFilter", "1")
 		$LBAQFilter = IniRead($config, "search", "LBAQFilter", "1")
 
 		$iChkSearchReduction = IniRead($config, "search", "reduction", "1")

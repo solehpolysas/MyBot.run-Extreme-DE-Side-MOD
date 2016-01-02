@@ -232,9 +232,9 @@ Func chkenable75percent()
 	Else
 		GUICtrlSetState($cmbenable75percent, $GUI_DISABLE)
 	EndIf
- EndFunc   ;==>chkenable75percent
+EndFunc   ;==>chkenable75percent
 
- Func hidehero()
+Func hidehero()
 	GUICtrlSetState($btnHeroSwitch, $GUI_SHOW)
 	GUICtrlSetState($btnNormalSwitch, $GUI_HIDE)
 	For $i = $grpSearchMode To $picSearchReduceTrophy
@@ -248,7 +248,7 @@ Func chkenable75percent()
 	For $i = $chkABMeetDEHero To $chkABMeetOneHero
 		GUICtrlSetState($i, $GUI_SHOW)
 	Next
-EndFunc
+EndFunc   ;==>hidehero
 
 Func hidenormal()
 	GUICtrlSetState($btnNormalSwitch, $GUI_SHOW)
@@ -271,18 +271,18 @@ Func hidenormal()
 		GUICtrlSetState($i, $GUI_SHOW)
 	Next
 
-EndFunc
+EndFunc   ;==>hidenormal
 #cs
-Func chkABEnableAfterHero()
+	Func chkABEnableAfterHero()
 	If GUICtrlRead($chkABEnableAfterHero) = $GUI_CHECKED Then
-		_GUICtrlEdit_SetReadOnly($txtABEnableAfter, False)
-		GUICtrlSetState($chkDBEnableAfter, $GUI_UNCHECKED)
-		_GUICtrlEdit_SetReadOnly($txtDBEnableAfter, True)
+	_GUICtrlEdit_SetReadOnly($txtABEnableAfter, False)
+	GUICtrlSetState($chkDBEnableAfter, $GUI_UNCHECKED)
+	_GUICtrlEdit_SetReadOnly($txtDBEnableAfter, True)
 	Else
-		_GUICtrlEdit_SetReadOnly($txtABEnableAfter, True)
+	_GUICtrlEdit_SetReadOnly($txtABEnableAfter, True)
 	EndIf
- EndFunc   ;==>chkABEnableAfter
- #ce
+	EndFunc   ;==>chkABEnableAfter
+#ce
 
 Func cmbABGoldElixirHero()
 	If _GUICtrlComboBox_GetCurSel($cmbABMeetGEHero) < 2 Then
@@ -332,10 +332,19 @@ EndFunc   ;==>chkABMeetTHHero
 
 Func chkABWeakBaseHero()
 	If GUICtrlRead($chkABWeakBaseHero) = $GUI_CHECKED Then
-			GUICtrlSetState($cmbABWeakMortarHero, $GUI_ENABLE)
-			GUICtrlSetState($cmbABWeakWizTowerHero, $GUI_ENABLE)
+		GUICtrlSetState($cmbABWeakMortarHero, $GUI_ENABLE)
+		GUICtrlSetState($cmbABWeakWizTowerHero, $GUI_ENABLE)
 	Else
 		GUICtrlSetState($cmbABWeakMortarHero, $GUI_DISABLE)
 		GUICtrlSetState($cmbABWeakWizTowerHero, $GUI_DISABLE)
 	EndIf
 EndFunc   ;==>chkABWeakBaseHero
+
+Func chkLBBKFilter()
+	If GUICtrlRead($chkLBBKFilter) = $GUI_CHECKED Then
+		GUICtrlSetState($chkLBBKEQFilter, $GUI_ENABLE)
+	Else
+		GUICtrlSetState($chkLBBKEQFilter, $GUI_UNCHECKED)
+		GUICtrlSetState($chkLBBKEQFilter, $GUI_DISABLE)
+	EndIf
+EndFunc   ;==>chkLBBKFilter

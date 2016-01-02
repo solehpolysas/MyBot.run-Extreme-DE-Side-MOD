@@ -183,6 +183,11 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		IniWrite($config, "search", "LBBKFilter", 0)
 	EndIf
+	If GUICtrlRead($chkLBBKEQFilter) = $GUI_CHECKED Then
+		IniWrite($config, "search", "LBBKEQFilter", 1)
+	Else
+		IniWrite($config, "search", "LBBKEQFilter", 0)
+	EndIf
 	If GUICtrlRead($chkLBAQFilter) = $GUI_CHECKED Then
 		IniWrite($config, "search", "LBAQFilter", 1)
 	Else
