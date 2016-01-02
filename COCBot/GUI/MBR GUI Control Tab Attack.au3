@@ -42,7 +42,8 @@ EndFunc   ;==>chkDBAttackOption
 
 Func chkABSmartAttackRedArea()
    chkDESideEB()
-   If _GUICtrlComboBox_GetCurSel($cmbABDeploy) > 4 Then
+   If _GUICtrlComboBox_GetCurSel($cmbABDeploy) >= 4 Then
+		GUICtrlSetState($chkABSmartAttackRedArea, $GUI_UNCHECKED)
 		GUICtrlSetState ($chkABSmartAttackRedArea, $GUI_HIDE)
 		$iChkRedArea[$LB] = 0
 		For $i = $lblABSmartDeploy To $picABAttackNearDarkElixirDrill
