@@ -134,6 +134,7 @@
 #include "functions\Other\ADB.au3"
 #include "functions\Other\SettingSwitch.au3"
 #include "functions\Other\ProfileSwitch.au3"
+#include "functions\Other\CoCStats.com.au3"
 
 #include "functions\Pixels\_CaptureRegion.au3"
 #include "functions\Pixels\_ColorCheck.au3"
