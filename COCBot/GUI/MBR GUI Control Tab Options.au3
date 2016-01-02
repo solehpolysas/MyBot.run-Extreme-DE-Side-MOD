@@ -436,3 +436,20 @@ Func btnSave()
 
     EndIf
 EndFunc
+
+Func txtAPIKey()
+   $stxtAPIKey  = GUICtrlRead($txtAPIKey)
+   IniWrite($config, "Stats", "txtAPIKey", $stxtAPIKey)
+   $MyApiKey = $stxtAPIKey
+EndFunc ;==> txtAPIKey
+
+ Func chkCoCStats()
+   If GUICtrlRead($chkCoCStats) = $GUI_CHECKED Then
+	  $ichkCoCStats = 1
+	  GUICtrlSetState($txtAPIKey, $GUI_ENABLE)
+   Else
+	  $ichkCoCStats = 0
+	  GUICtrlSetState($txtAPIKey, $GUI_DISABLE)
+EndIf
+IniWrite($config, "Stats", "chkCoCStats",$ichkCoCStats)
+EndFunc ;==> chkCoCStats
