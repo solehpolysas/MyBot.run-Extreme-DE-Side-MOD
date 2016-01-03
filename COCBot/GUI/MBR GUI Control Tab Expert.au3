@@ -34,6 +34,14 @@ Func chkScreenshotHideName()
 	EndIf
 EndFunc   ;==>chkScreenshotHideName
 
+Func chkScreenshotQuadrants()
+	If GUICtrlRead($chkScreenshotQuadrants) = $GUI_CHECKED Then
+		$ichkScreenshotQuadrants = 1
+	Else
+		$ichkScreenshotQuadrants = 0
+	EndIf
+EndFunc   ;==>chkScreenshotQuadrants
+
 Func chkDeleteLogs()
 	If GUICtrlRead($chkDeleteLogs) = $GUI_CHECKED Then
 		GUICtrlSetState($txtDeleteLogsDays, $GUI_ENABLE)

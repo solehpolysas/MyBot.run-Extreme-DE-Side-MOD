@@ -225,6 +225,8 @@ Global $ichkAlertPBCampFullTest = 0
 Global $cmbTroopComp ;For Event change on ComboBox Troop Compositions
 Global $iCollectCounter = 0 ; Collect counter, when reaches $COLLECTATCOUNT, it will collect
 Global $COLLECTATCOUNT = 10 ; Run Collect() after this amount of times before actually collect
+Global $ichkAlertBuilderIdle
+Global $iReportIdleBuilder = 0
 
 
 ;---------------------------------------------------------------------------------------------------
@@ -751,6 +753,7 @@ Global $dLastShareDate = _DateAdd("n", -60, _Date_Time_SystemTimeToDateTimeStr($
 
 Global $iScreenshotType = 0
 Global $ichkScreenshotHideName = 1
+Global $ichkScreenshotQuadrants = 0
 
 Global $ichkTotalCampForced = 0
 Global $iValueTotalCampForced = 200
