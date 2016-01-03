@@ -540,14 +540,14 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 240, $y = 463
 $grpOtherExpert = GUICtrlCreateGroup(GetTranslated(10,55, "Photo Screenshot Options"), $x - 20, $y - 17, 240, 59)
-	$chkScreenshotType = GUICtrlCreateCheckbox(GetTranslated(10,56, "Make in PNG format"), $x, $y, -1, -1)
+	$chkScreenshotType = GUICtrlCreateCheckbox(GetTranslated(10, 56, "Make in PNG format"), $x - 10, $y, 115, -1)
 		GUICtrlSetOnEvent(-1, "chkScreenshotType")
+	$chkScreenshotQuadrants = GUICtrlCreateCheckbox("Draw Quadrants", $x + 115, $y, 100, -1)
+		GUICtrlSetOnEvent(-1, "chkScreenshotQuadrants")
 $y += 19
-	$chkScreenshotHideName = GUICtrlCreateCheckbox(GetTranslated(10,57, "Hide Village and Clan Castle Name"), $x, $y, -1, -1)
+	$chkScreenshotHideName = GUICtrlCreateCheckbox(GetTranslated(10, 57, "Hide Village and Clan Castle Name"), $x - 10, $y, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkScreenshotHideName")
 $y += 19
-	$chkScreenshotQuadrants = GUICtrlCreateCheckbox("Draw 4 quadrants on photo", $x, $y, -1, -1)
-		GUICtrlSetOnEvent(-1, "chkScreenshotQuadrants")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")
 
