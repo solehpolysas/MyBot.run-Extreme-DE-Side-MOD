@@ -78,7 +78,7 @@
 			GUICtrlSetLimit(-1, 2)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$y +=22
-		$chkTrophyMode = GUICtrlCreateCheckbox(GetTranslated(4,23, "Snipe Combo"), $x-10, $y, -1, -1)
+		$chkTrophyMode = GUICtrlCreateCheckbox("Legacy snipe (No resource check)", $x-10, $y, -1, -1)
 			$txtTip = GetTranslated(4,24, "Adds the TH Snipe combination to the current search settings. (Example: Deadbase OR TH Snipe)")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkSnipeMode")
