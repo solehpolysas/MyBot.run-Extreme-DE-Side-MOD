@@ -107,9 +107,9 @@ EndFunc   ;==>chkBullyMode
 Func chkSnipeMode()
 	If GUICtrlRead($chkTrophyMode) = $GUI_CHECKED Then
 		$OptTrophyMode = 1
-		GUICtrlSetState($txtTHaddtiles, $GUI_ENABLE)
-		GUICtrlSetState($cmbAttackTHType, $GUI_ENABLE)
-		GUICtrlSetState($cmbAttackbottomType, $GUI_ENABLE)
+		;GUICtrlSetState($txtTHaddtiles, $GUI_ENABLE)
+		;GUICtrlSetState($cmbAttackTHType, $GUI_ENABLE)
+		;GUICtrlSetState($cmbAttackbottomType, $GUI_ENABLE)
 		GUICtrlSetState($chkUseClastleTH, $GUI_ENABLE)
 		GUICtrlSetState($chkUseQueenTH, $GUI_ENABLE)
 		GUICtrlSetState($chkUseKingTH, $GUI_ENABLE)
@@ -119,9 +119,9 @@ Func chkSnipeMode()
 		GUICtrlSetState($chkDrillZapTH, $GUI_ENABLE)
 	Else
 		$OptTrophyMode = 0
-		GUICtrlSetState($txtTHaddtiles, $GUI_DISABLE)
-		GUICtrlSetState($cmbAttackTHType, $GUI_DISABLE)
-		GUICtrlSetState($cmbAttackbottomType, $GUI_DISABLE)
+		;GUICtrlSetState($txtTHaddtiles, $GUI_DISABLE)
+		;GUICtrlSetState($cmbAttackTHType, $GUI_DISABLE)
+		;GUICtrlSetState($cmbAttackbottomType, $GUI_DISABLE)
 		GUICtrlSetState($chkUseClastleTH, $GUI_DISABLE)
 		GUICtrlSetState($chkUseQueenTH, $GUI_DISABLE)
 		GUICtrlSetState($chkUseKingTH, $GUI_DISABLE)

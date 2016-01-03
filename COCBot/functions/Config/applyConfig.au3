@@ -223,7 +223,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	EndIf
 	chkABMeetTHHero()
 
-	If $iChkMeetTHO[$LB] = 1 Then
+	If $iChkMeetTHOHero = 1 Then
 		GUICtrlSetState($chkABMeetTHOHero, $GUI_CHECKED)
 	Else
 		GUICtrlSetState($chkABMeetTHOHero, $GUI_UNCHECKED)

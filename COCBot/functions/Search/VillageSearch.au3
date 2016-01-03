@@ -201,18 +201,26 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				_WinAPI_DeleteObject($hBitmap)
 			EndIf
 			ExitLoop
-		 ElseIf $match[$LB] And Not $dbBase Then
-	  If $iChkDeploySettings[$LB] = 5 And ($iSkipUndetectedDE > 0 Or $iSkipCentreDE > 0) Then
-			If CheckfoundorcoreDE() = True Then
-
+	    ;Check LB snipe first or else the bot might attack DE storage/Townhall
+		ElseIf $match[$LB] And Not $dbBase Then
+			If $THLoc = "Out" And $iChkMeetTHO[$LB] = 1 Then
 			   SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
-			   SetLog("      " & "DE Side Base Found!", $COLOR_GREEN, "Lucida Console", 7.5)
+			   SetLog("      " & "TH Outside Found! ", $COLOR_GREEN, "Lucida Console", 7.5)
 			   $logwrited = True
-			   $iMatchMode = $LB
-			   $DESideFound = True
+			   $iMatchMode = $TS
 			   ExitLoop
+			EndIf
+		ElseIf $match[$LB] And Not $dbBase Then
+	       If $iChkDeploySettings[$LB] = 5 And ($iSkipUndetectedDE > 0 Or $iSkipCentreDE > 0) Then
+			   If CheckfoundorcoreDE() = True Then
+			      SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
+			      SetLog("      " & "DE Side Base Found!", $COLOR_GREEN, "Lucida Console", 7.5)
+			      $logwrited = True
+			      $iMatchMode = $LB
+			      $DESideFound = True
+			      ExitLoop
 		    EndIf
-		 ElseIf $iChkDeploySettings[$LB] = 5 Then
+		ElseIf $iChkDeploySettings[$LB] = 5 Then
 			    SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
 				SetLog(_PadStringCenter(" DE Side Base Found! ", 50, "~"), $COLOR_GREEN, "Lucida Console", 7.5)
 				$iMatchMode = $LB
@@ -357,30 +365,32 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	PushMsg("MatchFound")
 
 	; TH Detection Check Once Conditions
-	If $OptBullyMode = 0 And $OptTrophyMode = 0 And $iChkMeetTH[$iMatchMode] = 0 And $iChkMeetTHO[$iMatchMode] = 0 And $chkATH = 1 Then
-		$searchTH = checkTownHallADV2()
+	If $iMatchMode < 2 Then ;don't bother if we are already sniping
+		If $OptBullyMode = 0 And $OptTrophyMode = 0 And $iChkMeetTH[$iMatchMode] = 0 And $iChkMeetTHO[$iMatchMode] = 0 And $chkATH = 1 Then
+			$searchTH = checkTownHallADV2()
 
-		 If $searchTH = "-" Then ; retry with autoit search after $iDelayVillageSearch5 seconds
-		   If _Sleep($iDelayVillageSearch5) Then Return
-		   SetLog("2nd attempt to detect the TownHall!", $COLOR_RED)
-		   $searchTH = checkTownhallADV2()
-		 EndIf
+			 If $searchTH = "-" Then ; retry with autoit search after $iDelayVillageSearch5 seconds
+			   If _Sleep($iDelayVillageSearch5) Then Return
+			   SetLog("2nd attempt to detect the TownHall!", $COLOR_RED)
+			   $searchTH = checkTownhallADV2()
+			 EndIf
 
 
-		 If $searchTH = "-" Then ; retry with c# search, matching could not have been caused by heroes that partially hid the townhall
-		   If _Sleep($iDelayVillageSearch4) Then Return
-		   If $debugImageSave = 1 Then DebugImageSave("VillageSearch_NoTHFound2try_", False)
-			THSearch()
+			 If $searchTH = "-" Then ; retry with c# search, matching could not have been caused by heroes that partially hid the townhall
+			   If _Sleep($iDelayVillageSearch4) Then Return
+			   If $debugImageSave = 1 Then DebugImageSave("VillageSearch_NoTHFound2try_", False)
+				THSearch()
+			EndIf
+
+			If SearchTownHallLoc() = False And $searchTH <> "-" Then
+				SetLog("Checking Townhall location: TH is inside, skip Attack TH")
+			ElseIf $searchTH <> "-" Then
+				SetLog("Checking Townhall location: TH is outside, Attacking Townhall!")
+			Else
+				SetLog("Checking Townhall location: Could not locate TH, skipping attack TH...")
+			EndIf
 		EndIf
-
-		If SearchTownHallLoc() = False And $searchTH <> "-" Then
-			SetLog("Checking Townhall location: TH is inside, skip Attack TH")
-		ElseIf $searchTH <> "-" Then
-			SetLog("Checking Townhall location: TH is outside, Attacking Townhall!")
-		Else
-			SetLog("Checking Townhall location: Could not locate TH, skipping attack TH...")
-		EndIf
-	EndIf
+    EndIf
 
 	$Is_ClientSyncError = False
 

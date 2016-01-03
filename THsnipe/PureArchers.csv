@@ -1,0 +1,14 @@
+TROOP |S1|S2|Q1|Q2|DEL1 |DEL2 |LOG_TEXT                                    |NOTES
+Arch  | 3| 3| 2| 3|  800| 1200|Don't touch that Larry.                     |deploys 6-9 archers
+WAIT  |  |  |  |  |     |35000|Larry!  Don't touch that!                   |WAIT  |  |  |  |  |     |20000|                                            |
+Arch  | 3| 3| 2| 3|  800| 1200|Larry!!!!                                   |deploys 6-9 archers
+WAIT  |  |  |  |  |     |35000|What did I just say Larry?                  |
+Arch  | 3| 3| 2| 3| 1000| 1200|                                            |deploys 6-9 archers
+WAIT  |  |  |  |  |     |30000|                                            |
+Arch  | 3| 3| 2| 3| 1000| 1200|                                            |deploys 6-9 archers
+WAIT  |  |  |  |  |     |30000|                                            |
+Arch  | 5| 5| 5| 6| 1000| 1200|                                            |release 25-30 arch
+WAIT  |  |  |  |  |     |30000|                                            |
+WAIT  |  |  |  |  |     |30000|                                            |
+Text  |  |  |  |  |     |     |~Finished Attacking, waiting to finish      |
+WAIT  |  |  |  |  |     |30000|                                            |                                |
