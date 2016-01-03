@@ -545,6 +545,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$icmbHoursPushBullet = IniRead($config, "pushbullet", "HoursPushBullet", "4")
 		$ichkDeleteOldPushes = IniRead($config, "pushbullet", "DeleteOldPushes", "0")
 		$ichkAlertPBCampFull = IniRead($config, "pushbullet", "AlertCampFull", "0")
+		$ichkAlertBuilderIdle = IniRead($config, "pushbullet", "AlertBuilderIdle", "0")
 
 
 		$ichkDeleteLogs		= IniRead($config, "deletefiles", "DeleteLogs", "0")
@@ -588,6 +589,8 @@ Func readConfig() ;Reads config and sets it to the variables
 		$iScreenshotType = IniRead($config, "other", "ScreenshotType", "0")
 
 		$ichkScreenshotHideName = IniRead($config, "other", "ScreenshotHideName", "1")
+
+		$ichkScreenshotQuadrants = IniRead($config, "other", "ScreenshotQuadrants", "0")
 
 		;forced Total Camp values
 		$ichkTotalCampForced =  IniRead($config, "other", "ChkTotalCampForced", "0")

@@ -611,6 +611,13 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		IniWrite($config, "pushbullet", "AlertCampFull", 0)
 	EndIf
+
+	If GUICtrlRead($chkAlertBuilderIdle) = $GUI_CHECKED Then
+		IniWrite($config, "pushbullet", "AlertBuilderIdle", 1)
+	Else
+		IniWrite($config, "pushbullet", "AlertBuilderIdle", 0)
+	EndIf
+
 	;	If  GUICtrlRead($chkUnbreakable) = $GUI_CHECKED Then
 	;		IniWrite($config, "advanced", "chkUnbreakable", 1)
 	;	Else
@@ -1285,6 +1292,12 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "other", "ScreenshotHideName", 1)
 	Else
 		IniWrite($config, "other", "ScreenshotHideName", 0)
+	EndIf
+
+	If GUICtrlRead($chkScreenshotQuadrants) = $GUI_CHECKED Then
+		IniWrite($config, "other", "ScreenshotQuadrants", 1)
+	Else
+		IniWrite($config, "other", "ScreenshotQuadrants", 0)
 	EndIf
 
 

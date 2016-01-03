@@ -117,8 +117,14 @@ AutoStart()
 While 1
 	Switch TrayGetMsg()
 		Case $tiAbout
-			MsgBox(64 + $MB_APPLMODAL + $MB_TOPMOST, $sBotTitle, "Clash of Clans Bot" & @CRLF & @CRLF & _
-					"Version: " & $sBotVersion & @CRLF & _
+;			MsgBox(64 + $MB_APPLMODAL + $MB_TOPMOST, $sBotTitle, "Clash of Clans Bot" & @CRLF & @CRLF & _
+;					"Version: " & $sBotVersion & @CRLF & _
+;					"Released under the GNU GPLv3 license.", 0, $frmBot)
+			MsgBox(64 + $MB_APPLMODAL + $MB_TOPMOST, "Extreme DE Side MOD", "Extreme DE Side MOD" & @CRLF & _
+					"Version: 1.02" & @CRLF & @CRLF & _
+					"Modification of MyBot.run" & @CRLF & _
+					"The original open source Clash of Clans Bot" & @CRLF & _
+					"Version: " & $sBotVersion & @CRLF & @CRLF & _
 					"Released under the GNU GPLv3 license.", 0, $frmBot)
 		Case $tiExit
 			ExitLoop
@@ -182,6 +188,11 @@ Func runBot() ;Bot that runs everything in order
 			If _Sleep($iDelayRunBot3) Then Return
 			If $Restart = True Then ContinueLoop
 			DonateCC()
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
+			If $ichkTrainLightSpell = 1 Then
+                DrillZapSpell() ; Drill Zap
+            EndIf
 			If _Sleep($iDelayRunBot1) Then Return
 			checkMainScreen(False) ; required here due to many possible exits
 			If $Restart = True Then ContinueLoop
@@ -221,6 +232,7 @@ Func runBot() ;Bot that runs everything in order
 			UpgradeWall()
 			If _Sleep($iDelayRunBot3) Then Return
 			If $Restart = True Then ContinueLoop
+			PushMsg("CheckBuilderIdle")
 			Idle()
 			If _Sleep($iDelayRunBot3) Then Return
 			If $Restart = True Then ContinueLoop
