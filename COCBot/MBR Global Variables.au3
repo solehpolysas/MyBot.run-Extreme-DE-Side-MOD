@@ -753,6 +753,7 @@ Global $dLastShareDate = _DateAdd("n", -60, _Date_Time_SystemTimeToDateTimeStr($
 
 Global $iScreenshotType = 0
 Global $ichkScreenshotHideName = 1
+Global $ichkScreenshotQuadrants = 0
 
 Global $ichkTotalCampForced = 0
 Global $iValueTotalCampForced = 200

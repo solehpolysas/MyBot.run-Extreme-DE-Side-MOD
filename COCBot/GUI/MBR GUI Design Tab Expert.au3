@@ -545,6 +545,9 @@ $grpOtherExpert = GUICtrlCreateGroup(GetTranslated(10,55, "Photo Screenshot Opti
 $y += 19
 	$chkScreenshotHideName = GUICtrlCreateCheckbox(GetTranslated(10,57, "Hide Village and Clan Castle Name"), $x, $y, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkScreenshotHideName")
+$y += 19
+	$chkScreenshotQuadrants = GUICtrlCreateCheckbox("Draw 4 quadrants on photo", $x, $y, -1, -1)
+		GUICtrlSetOnEvent(-1, "chkScreenshotQuadrants")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")
 

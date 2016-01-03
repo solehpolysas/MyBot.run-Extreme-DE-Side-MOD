@@ -590,6 +590,8 @@ Func readConfig() ;Reads config and sets it to the variables
 
 		$ichkScreenshotHideName = IniRead($config, "other", "ScreenshotHideName", "1")
 
+		$ichkScreenshotQuadrants = IniRead($config, "other", "ScreenshotQuadrants", "0")
+
 		;forced Total Camp values
 		$ichkTotalCampForced =  IniRead($config, "other", "ChkTotalCampForced", "0")
 		$iValueTotalCampForced =  IniRead($config, "other", "ValueTotalCampForced", "200")
