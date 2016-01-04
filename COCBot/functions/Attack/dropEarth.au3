@@ -27,7 +27,6 @@ Func dropEarth($x, $y, $spell)
 				If _Sleep(100) Then Return
 				If $debugsetlog = 1 Then SetLog("Dropping spell in slot " & $i, $COLOR_BLUE)
 				Click(GetXPosOfArmySlot($i, 68), 595 + $bottomOffsetY, 1, 0, "#0094")
-				If $debugsetlog = 1 Then SetLog("Number of Earth Spells: " & $numEarthSpells, $COLOR_PURPLE)
 				SetLog(" Dropping EARTHQUAKE SPELL", $COLOR_RED)
 				Click($x, $y, 4, 50)
 			    If $CCSpellType = $eEspell Then
