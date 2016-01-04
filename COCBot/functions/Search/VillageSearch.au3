@@ -202,14 +202,12 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			EndIf
 			ExitLoop
 	    ;Check LB snipe first or else the bot might attack DE storage/Townhall
-		ElseIf $match[$LB] And Not $dbBase Then
-			If $THLoc = "Out" And $iChkMeetTHO[$LB] = 1 Then
-			   SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
-			   SetLog("      " & "TH Outside Found! ", $COLOR_GREEN, "Lucida Console", 7.5)
-			   $logwrited = True
-			   $iMatchMode = $TS
-			   ExitLoop
-			EndIf
+		ElseIf $match[$LB] And Not $dbBase and $THLoc = "Out" And $iChkMeetTHO[$LB] = 1 Then
+		   SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
+		   SetLog("      " & "TH Outside Found! ", $COLOR_GREEN, "Lucida Console", 7.5)
+		   $logwrited = True
+		   $iMatchMode = $TS
+		   ExitLoop
 		ElseIf $match[$LB] And Not $dbBase Then
 	       If $iChkDeploySettings[$LB] = 5 And ($iSkipUndetectedDE > 0 Or $iSkipCentreDE > 0) Then
 			   If CheckfoundorcoreDE() = True Then
