@@ -17,7 +17,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 	EndIf
 
 ;	$debugSetlog = 1
-	Local $aDeployButtonPositions[$eCCSpell] = getUnitLocationArray()
+	Local $aDeployButtonPositions[$eCCSpell]
 ;	$debugSetlog = 0
 
 	For $i = 0 To UBound($listInfoDeploy) - 1
@@ -79,7 +79,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 
 							$earthquakeDropped = 1
 						Else
-							If $spellCount > 0 and $spellCount < 4 Then SetLog("Only " & $numEarthSpells & " " & getTranslatedTroopName($kind) & "s available.  Waiting for 4.")
+							If $spellCount > 0 and $spellCount < 4 Then SetLog("Only " & $spellCount & " " & getTranslatedTroopName($kind) & "s available.  Waiting for 4.")
 						EndIf
 
 	;					$debugSetlog = 0

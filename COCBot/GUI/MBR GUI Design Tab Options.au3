@@ -19,7 +19,6 @@
     ;;; SIDE ATTACK
     ;;;;;;;;;;;;;;;;;
 	Local $x = 30, $y = 150
-            GUICtrlSetOnEvent(-1, "sldDeDistance")
 	  $x = 30
 	  $y = 150
 	  $grpStatsMisc = GUICtrlCreateGroup("Smart Zap Drill", $x - 20, $y - 20, 445, 65)

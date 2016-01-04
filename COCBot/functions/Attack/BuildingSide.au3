@@ -14,7 +14,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-Func DESpellDP()
+#cs Func DESpellDP()
 	local $xLimit = 0
 	local $yLimit = 0
 	local $HSDist[2] = [60, 55]
@@ -74,6 +74,8 @@ Func DESpellDP()
 	EndIf
 	SetLog ("Spell drop point: " & $SpellDP[0] & ", " & $SpellDP[1] , $COLOR_BLUE)
  EndFunc	;==>DESpellDP
+
+ #ce
 
 Func GetBuildingEdge($TypeBuilding = $eSideBuildingDES) ;Using $BuildingLoc x y we are finding which side the building is located, only needed when not using redline.
 	Local $TypeBuildingName

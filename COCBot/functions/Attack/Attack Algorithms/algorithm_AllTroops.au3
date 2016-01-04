@@ -15,7 +15,7 @@
 
 Func getHeroes() ;Get information about your heroes
 ;	$debugSetlog = 1
-	Local $aDeployButtonPositions[$eCCSpell] = getUnitLocationArray()
+	Local $aDeployButtonPositions[$eCCSpell]
 ;	$debugSetlog = 0
 
 	$King = $aDeployButtonPositions[$eKing]
