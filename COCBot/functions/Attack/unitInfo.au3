@@ -83,6 +83,7 @@ EndFunc   ;==>getUnitLocationArray
 
 Func getCCSpellType() ; Returns the type of spell currently in the clan castle.
 	Local $barLocation = unitLocation($eCCSpell)
+	Local $unitText = getTranslatedTroopName($eCCSpell)
 
 	; $barLocation is -1 if there is no entry on the deployment bar allocated as a clan castle spell.
 	If $barLocation <> -1 Then

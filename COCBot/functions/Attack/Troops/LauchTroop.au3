@@ -47,9 +47,9 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
 			If $debugSetlog =1 Then SetLog("**ListInfoDeploy row " & $i & ": USE "  &$troopKind & " SIDES " &  $nbSides & " WAVE " & $waveNb & " XWAVE " & $maxWaveNb & " SLOTXEDGE " & $slotsPerEdge, $COLOR_PURPLE)
 
 			If (IsNumber($troopKind)) Then
-				$troop = unitLocation($kind)
-				$troopNb = Ceiling(unitCount($kind) / $maxWaveNb)
-				$name = getTranslatedTroopName($kind)
+				$troop = unitLocation($troopKind)
+				$troopNb = Ceiling(unitCount($troopKind) / $maxWaveNb)
+				$name = getTranslatedTroopName($troopKind)
 			EndIf
 
 			If ($troop <> -1 And $troopNb > 0) Or IsString($troopKind) Then

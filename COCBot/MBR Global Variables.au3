@@ -809,8 +809,6 @@ Global $DESideEB, $DELowEndMin, $DisableOtherEBO
 Global $DEEndAq, $DEEndBk, $DEEndOneStar
 Global $DeDeployType[24],$DeDeployPosition[24]
 Global $DeDeployEmptyString = "--------------------" ;20 -'s
-Global $numEarthSpells
-global $kind, $aDeployButtonPositions, $unitText
 
 ;Snipe While Train
 Global $isSnipeWhileTrain = False
