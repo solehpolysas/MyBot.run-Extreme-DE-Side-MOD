@@ -42,6 +42,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 								   $listInfoDeploy[$i][0])
 					 EndIf
 				 Case $listInfoDeploy[$i][0] = $eESpell
+					 $debugSetlog = 1
 					 SetLog("Dropping earth at " & $listInfoDeploy[$i][4] & "% distance")
 					 ;4 quakes or go home
 					 Local $numEarthSpells = spellCount($eESpell)
@@ -61,6 +62,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 					 Else
 						 SetLog("Only " & $numEarthSpells & " earthquakes available.  Waiting for 4.")
 					 EndIf
+					 $debugSetlog = 0
 				 Case Else
 					 If LauchTroop($listInfoDeploy[$i][0], $listInfoDeploy[$i][1], $listInfoDeploy[$i][2], $listInfoDeploy[$i][3], $listInfoDeploy[$i][4]) Then
 						 If _Sleep(SetSleep(1)) Then Return
