@@ -1294,6 +1294,12 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "other", "ScreenshotHideName", 0)
 	EndIf
 
+	If GUICtrlRead($chkScreenshotQuadrants) = $GUI_CHECKED Then
+		IniWrite($config, "other", "ScreenshotQuadrants", 1)
+	Else
+		IniWrite($config, "other", "ScreenshotQuadrants", 0)
+	EndIf
+
 
 	; debug
 	If GUICtrlRead($chkDebugClick) = $GUI_CHECKED Then

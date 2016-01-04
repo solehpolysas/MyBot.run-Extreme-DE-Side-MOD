@@ -1388,6 +1388,11 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkScreenshotHideName, $GUI_UNCHECKED)
 	EndIf
 
+	If $ichkScreenshotQuadrants = 1 Then
+		GUICtrlSetState($chkScreenshotQuadrants, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkScreenshotQuadrants, $GUI_UNCHECKED)
+	EndIf
 
 	;debug
 	If $debugClick = 1 Then
