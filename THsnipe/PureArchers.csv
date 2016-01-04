@@ -1,14 +1,33 @@
 TROOP |S1|S2|Q1|Q2|DEL1 |DEL2 |LOG_TEXT                                    |NOTES
 Arch  | 3| 3| 2| 3|  800| 1200|Don't touch that Larry.                     |deploys 6-9 archers
-WAIT  |  |  |  |  |     |35000|Larry!  Don't touch that!                   |WAIT  |  |  |  |  |     |20000|                                            |
+WAIT  |  |  |  |  |     |35000|Larry!  Don't touch that!                   |
 Arch  | 3| 3| 2| 3|  800| 1200|Larry!!!!                                   |deploys 6-9 archers
 WAIT  |  |  |  |  |     |35000|What did I just say Larry?                  |
 Arch  | 3| 3| 2| 3| 1000| 1200|                                            |deploys 6-9 archers
-WAIT  |  |  |  |  |     |30000|                                            |
-Arch  | 3| 3| 2| 3| 1000| 1200|                                            |deploys 6-9 archers
-WAIT  |  |  |  |  |     |30000|                                            |
-Arch  | 5| 5| 5| 6| 1000| 1200|                                            |release 25-30 arch
-WAIT  |  |  |  |  |     |30000|                                            |
-WAIT  |  |  |  |  |     |30000|                                            |
+WAIT  |  |  |  |  |     |30000|Well Larry messed that up.                  |
+HSpell|  |  |  |  |     |     |Pure archer not working out...              |deploys healing spell
+Giant | 2| 2| 9| 9|  500|  600|Calling for help.                           |deploys 18 giants
+Hogs  | 5| 6| 3| 3|  800| 1000|                                            |releases 15-18 Hogs
+Wall  | 2| 2| 1| 1|  500|  600|                                            |deploys 2 wallbreakers
+Wall  | 2| 2| 1| 1|  500|  600|                                            |deploys 2 wallbreakers
+King  |  |  |  |  |     |     |                                            |deploys king
+Queen |  |  |  |  |     |     |                                            |deploys queen
+Heal  | 2| 2| 1| 1|  500|  600|                                            |deploys 2 healer
+RSpell|  |  |  |  |     |     |                                            |drop rage spell
+Castle|  |  |  |  |     |     |                                            |deploys cc
+Barb  | 4| 4| 8| 8|  500|  600|                                            |deploys ut to 32 barbarians
+Arch  | 3| 3|13|13|  500|  600|                                            |deploys up tp 39 archers
+Barb  | 3| 3|11|11|  500|  600|                                            |deploys ut to 33 barbarians
+Arch  | 2| 2|20|20|  500|  600|                                            |deploys up to 40 archers
+Barb  | 4| 4| 9| 9|  500|  600|                                            |deploys ut to 36 barbarians
+Arch  | 2| 2|20|20|  500|  600|                                            |deploys up to 40 archers
+WAIT  |  |  |  |  |     |25000|                                            |
+Lspell|  |  |  |  |     |     |                                            |launch lighting spell
+Lspell|  |  |  |  |     |     |                                            |launch lighting spell
+Lspell|  |  |  |  |     |     |                                            |launch lighting spell
+Lspell|  |  |  |  |     |     |                                            |launch lighting spell
+Lspell|  |  |  |  |     |     |                                            |launch lighting spell
+WAIT  |  |  |  |  |     |25000|                                            |
+Text  |  |  |  |  |     |     |                                            |All Giants, Barbs, and Archers should be deployed in addition to Heroes & CC (if options are selected). Other troops are not meant to be deployed in this algorithm.|
 Text  |  |  |  |  |     |     |~Finished Attacking, waiting to finish      |
-WAIT  |  |  |  |  |     |30000|                                            |                                |
+WAIT  |  |  |  |  |     |20000|                                            |
