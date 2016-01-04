@@ -1,59 +1,57 @@
-Func LauchTroop($troopKind, $nbSides, $waveNb, $maxWaveNb, $slotsPerEdge = 0)
-	Local $troop = -1
-	Local $troopNb = 0
-	Local $name = ""
-	For $i = 0 To UBound($atkTroops) - 1 ; identify the position of this kind of troop
-		If $atkTroops[$i][0] = $troopKind Then
-			$troop = $i
-			$troopNb = Ceiling($atkTroops[$i][1] / $maxWaveNb)
-			Local $plural = 0
-			If $troopNb > 1 Then $plural = 1
-			$name = NameOfTroop($troopKind, $plural)
-		EndIf
-	Next
+Func LauchTroop($kind, $nbSides, $waveNb, $maxWaveNb, $slotsPerEdge = 0)
+	Local $troop = unitLocation($kind)
+	Local $troopNb = Ceiling(unitCount($kind) / $maxWaveNb)
+	Local $name = getTranslatedTroopName($kind)
 
-	If ($troop = -1) Or ($troopNb = 0) Then
+	If ($troop = -1) Or ($troopNb = 0) Then ; Troop not trained or 0 units to deploy
 		;if $waveNb > 0 Then SetLog("Skipping wave of " & $name & " (" & $troopKind & ") : nothing to drop" )
 		Return False; nothing to do => skip this wave
 	EndIf
 
 	Local $waveName = "first"
+
 	If $waveNb = 2 Then $waveName = "second"
 	If $waveNb = 3 Then $waveName = "third"
 	If $maxWaveNb = 1 Then $waveName = "only"
 	If $waveNb = 0 Then $waveName = "last"
-	SetLog("Dropping " & $waveName & " wave of " & $troopNb & " " & $name, $COLOR_GREEN)
 
+	SetLog("Dropping " & $waveName & " wave of " & $troopNb & " " & $name, $COLOR_GREEN)
 	DropTroop($troop, $nbSides, $troopNb, $slotsPerEdge)
+
 	Return True
 EndFunc   ;==>LauchTroop
 
 Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
-	If $debugSetlog =1 Then SetLog("LaunchTroop2 with CC " & $CC & ", K " & $King & ", Q " & $Queen & ", W " & $Warden , $COLOR_PURPLE)
 	Local $listListInfoDeployTroopPixel[0]
+
+	Local $isCCDropped = False
+	Local $isHeroesDropped = False
+
+	Local $troop = -1
+	Local $troopNb = 0
+	Local $name = ""
+
+	If $debugSetlog =1 Then SetLog("LaunchTroop2 with CC " & $CC & ", K " & $King & ", Q " & $Queen & ", W " & $Warden , $COLOR_PURPLE)
 
 	If ($iChkRedArea[$iMatchMode]) And $iChkDeploySettings[$iMatchMode] < 4 Then
 		For $i = 0 To UBound($listInfoDeploy) - 1
-			Local $troop = -1
-			Local $troopNb = 0
-			Local $name = ""
 			$troopKind = $listInfoDeploy[$i][0]
 			$nbSides = $listInfoDeploy[$i][1]
 			$waveNb = $listInfoDeploy[$i][2]
 			$maxWaveNb = $listInfoDeploy[$i][3]
 			$slotsPerEdge = $listInfoDeploy[$i][4]
+			$troop = -1
+			$troopNb = 0
+			$name = ""
+
 			If $debugSetlog =1 Then SetLog("**ListInfoDeploy row " & $i & ": USE "  &$troopKind & " SIDES " &  $nbSides & " WAVE " & $waveNb & " XWAVE " & $maxWaveNb & " SLOTXEDGE " & $slotsPerEdge, $COLOR_PURPLE)
+
 			If (IsNumber($troopKind)) Then
-				For $j = 0 To UBound($atkTroops) - 1 ; identify the position of this kind of troop
-					If $atkTroops[$j][0] = $troopKind Then
-						$troop = $j
-						$troopNb = Ceiling($atkTroops[$j][1] / $maxWaveNb)
-						Local $plural = 0
-						If $troopNb > 1 Then $plural = 1
-						$name = NameOfTroop($troopKind, $plural)
-					EndIf
-				Next
+				$troop = unitLocation($kind)
+				$troopNb = Ceiling(unitCount($kind) / $maxWaveNb)
+				$name = getTranslatedTroopName($kind)
 			EndIf
+
 			If ($troop <> -1 And $troopNb > 0) Or IsString($troopKind) Then
 				Local $listInfoDeployTroopPixel
 				If (UBound($listListInfoDeployTroopPixel) < $waveNb) Then
@@ -74,9 +72,8 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
 				$listListInfoDeployTroopPixel[$waveNb - 1] = $listInfoDeployTroopPixel
 			EndIf
 		Next
-		Local $isCCDropped = False
-		Local $isHeroesDropped = False
-		If ( ($iChkSmartAttack[$iMatchMode][0] = 1 Or $iChkSmartAttack[$iMatchMode][1] = 1 Or $iChkSmartAttack[$iMatchMode][2] = 1) And UBound($PixelNearCollector) = 0) Then
+
+		If (($iChkSmartAttack[$iMatchMode][0] = 1 Or $iChkSmartAttack[$iMatchMode][1] = 1 Or $iChkSmartAttack[$iMatchMode][2] = 1) And UBound($PixelNearCollector) = 0) Then
 				SetLog("Error, no pixel found near collector => Normal attack near red line")
 		EndIf
 		If ($iCmbSmartDeploy[$iMatchMode] = 0) Then

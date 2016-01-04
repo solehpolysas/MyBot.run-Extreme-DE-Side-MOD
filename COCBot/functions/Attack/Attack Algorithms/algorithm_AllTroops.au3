@@ -14,28 +14,20 @@
 ; ===============================================================================================================================
 
 Func getHeroes() ;Get information about your heroes
-    $King = -1
-    $Queen = -1
-    $CC = -1
-    $Warden = -1
+;	$debugSetlog = 1
+	Local $aDeployButtonPositions[$eCCSpell] = getUnitLocationArray()
+;	$debugSetlog = 0
 
-    For $i = 0 To UBound($atkTroops) - 1
-        If $atkTroops[$i][0] = $eCastle Then
-            $CC = $i
-        ElseIf $atkTroops[$i][0] = $eKing Then
-            $King = $i
-        ElseIf $atkTroops[$i][0] = $eQueen Then
-            $Queen = $i
-        ElseIf $atkTroops[$i][0] = $eWarden Then
-            $Warden = $i
-        EndIf
-    Next
+	$King = $aDeployButtonPositions[$eKing]
+    $Queen = $aDeployButtonPositions[$eQueen]
+    $Warden = $aDeployButtonPositions[$eWarden]
+    $CC = $aDeployButtonPositions[$eCastle]
 
     If $debugSetlog=1 Then
         SetLog("Use king  SLOT n° " & $King, $COLOR_PURPLE)
         SetLog("Use queen SLOT n° " & $Queen, $COLOR_PURPLE)
-        SetLog("Use CC SLOT n° " & $CC, $COLOR_PURPLE)
         SetLog("Use Warden SLOT n° " & $Warden, $COLOR_PURPLE)
+        SetLog("Use CC SLOT n° " & $CC, $COLOR_PURPLE)
     EndIf
 EndFunc
 
