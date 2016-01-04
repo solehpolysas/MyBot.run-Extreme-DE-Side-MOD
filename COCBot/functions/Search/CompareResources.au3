@@ -133,7 +133,7 @@ Func CompareResources($pMode) ;Compares resources and returns true if conditions
 			EndIf
 		EndIf
 
-		If $iChkMeetTHO[$pMode] = 1 And $iChkMeetTH[$pMode] <> 1 and Then
+		If $iChkMeetTHO[$pMode] = 1 And $iChkMeetTH[$pMode] <> 1 Then
 			If $THLO <> 1 Then Return False
 		EndIf
 
