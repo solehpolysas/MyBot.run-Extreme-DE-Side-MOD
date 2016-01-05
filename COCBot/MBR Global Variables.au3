@@ -886,3 +886,8 @@ Global $cmbTroopComp
 Global $ichkCoCStats = 0
 Global $stxtAPIKey = ""
 Global $MyApiKey = ""
+
+; savetroops
+Global $saveTroops = 0
+Global $countFindPixCloser = 0
+Global $countCollectorexposed = 0

@@ -171,13 +171,18 @@ Func getNumberOfSides() ;Returns the number of sides to attack from
             $nbSides = 4
         Case 4 ;Four Finger ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking four finger fight style", $COLOR_BLUE)
-            $nbSides = 5
 
-        Case 5 ;DE Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			$nbSides = 5
+        Case 5 ;Save Troops Style ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			SetLog("Attacking with save troops for collectors", $COLOR_BLUE)
+
+			$nbSides = 4
+			$saveTroops = 1
+        Case 6 ;DE Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on Dark Elixir Side.", $COLOR_BLUE)
 
             $nbSides = 1
-        Case 6 ;TH Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Case 7 ;TH Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on Town Hall Side.", $COLOR_BLUE)
 
             $nbSides = 1
@@ -188,6 +193,22 @@ EndFunc
 
 Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
     ; $ListInfoDeploy = [Troop, No. of Sides, $WaveNb, $MaxWaveNb, $slotsPerEdge]
+	If $iMatchMode = $DB And $iChkDeploySettings[$DB] >= 4 Then ;you can help me in this section
+		 If $debugSetlog = 1 Then SetLog("ListDeploy for Save Troops attack", $COLOR_PURPLE)
+	     Local $listInfoDeploy[11][5] = [[$eGiant, $nbSides, 1, 1, 2] _
+			, [$eBarb, $nbSides, 1, 2, 0] _
+			, [$eWall, $nbSides, 1, 1, 1] _
+			, [$eArch, $nbSides, 1, 2, 0] _
+			, [$eGobl, $nbSides, 1, 2, 0] _
+			, ["CC", 1, 1, 1, 1] _
+			, [$eHogs, $nbSides, 1, 1, 1] _
+			, [$eWiza, $nbSides, 1, 1, 0] _
+			, [$eMini, $nbSides, 1, 2, 0] _
+			, [$eGobl, $nbSides, 2, 2, 0] _
+			, ["HEROES", 1, 2, 1, 1] _
+			]
+		 EndIf
+
     If $iMatchMode = $LB And $iChkDeploySettings[$LB] >= 5 Then ; Customized side wave deployment here for DE and TH side
         If $debugSetlog = 1 Then SetLog("List Deploy for Customized Side attack", $COLOR_PURPLE)
 
