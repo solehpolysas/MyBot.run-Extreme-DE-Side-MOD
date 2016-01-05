@@ -39,7 +39,7 @@
 
 	Local $x = 30, $y = 130
 
-	$grpStatuszap = GUICtrlCreateGroup("Status", $x + 210, $y +10, 205, 50)
+	$grpStatuszap = GUICtrlCreateGroup("Status", $x + 270, $y +10, 150, 50)
 		$y += 5
 		$picSmartZap = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 285, $y + 25, 21, 21)
 		$lblSmartZap = GUICtrlCreateLabel("0", $x+200, $y + 23, 80, 30, $SS_RIGHT)
@@ -53,6 +53,19 @@
 		GUICtrlSetColor(-1,0x279B61)
 		$txtTip = "The amount of Lightning Spells Used in zapping."
 	    GUICtrlSetTip(-1, $txtTip)
+
+
+    Local $x = 200, $y = 150
+	  $grpSaveTroops = GUICtrlCreateGroup("SaveTroop Option", $x - 20, $y - 20, 100, 60)
+         $chkChangeFF = GUICtrlCreateCheckbox("Use FF", $x, $y, -1, -1)
+			$txtTip = "Change to FF Barch if less than % of collectors near RED LINE."
+			GUICtrlSetTip(-1, $txtTip)
+		$txtTHpercentCollectors = GUICtrlCreateInput("80", $x, $y + 30, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetLimit(-1, 100)
+		$lblChangeFF = GUICtrlCreateLabel("% collectors.", $x + 40, $y + 35, -1, -1)
+		   	GUICtrlSetTip(-1, $txtTip)
+
 
     ;;;;;;;;;;;;;;;;;
     ;;; TROOP Deployment
