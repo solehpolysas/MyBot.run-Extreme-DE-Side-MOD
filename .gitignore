@@ -2,4 +2,5 @@
 **/Backup
 **/lib/debug
 **/Thumbs.db
+**/.DS_Store
 *.exe
