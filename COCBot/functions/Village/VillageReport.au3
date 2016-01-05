@@ -59,9 +59,8 @@ Func VillageReport($bBypass = False, $bSuppressLog = False)
 		If $i >= 20 Then ExitLoop
 	  WEnd
 
-		    ; DE Smart Zap
-	 GUICtrlSetData($lblSmartZap, _NumberFormat($smartZapGain))
-     GUICtrlSetData($lblLightningUsed, _NumberFormat($NumLTSpellsUsed))
-
+#cs	; DE Smart Zap
+	GUICtrlSetData($lblSmartZap, _NumberFormat($smartZapGain))
+#ce GUICtrlSetData($lblLightningUsed, _NumberFormat($NumLTSpellsUsed))
 
 EndFunc   ;==>VillageReport
