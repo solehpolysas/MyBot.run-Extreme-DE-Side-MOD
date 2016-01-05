@@ -289,6 +289,9 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ichkTrainLightSpell  = IniRead($config, "options", "TrainLightSpell", "0")
 		$itxtMinDark = IniRead($config, "options", "txtMinDark", "1000")
         $ichkDrillZapTH = IniRead($config, "options", "chkDrillZapTH", "0")
+
+		$useFFBarchST  = IniRead($config, "options", "ChkSTFFBarch", "0")
+		$percentCollectors= IniRead($config, "options", "txtTHpercentCollectors", "80")
 	    For $i = 1 to 24
 		   $DeDeployType[$i-1] = IniRead($config, "options", "DeDeployType" & $I, $DeDeployEmptyString)
 		   $DeDeployPosition[$i-1] = IniRead($config, "options", "DeDeployPosition" & $I, "0")
