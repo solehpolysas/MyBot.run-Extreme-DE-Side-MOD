@@ -449,6 +449,15 @@ Func saveConfig() ;Saves the controls settings to the config
        IniWrite($config, "options", "chkDrillZapTH", "0")
     EndIf
 
+	;save troops option
+	If GUICtrlRead($chkChangeFF) = $GUI_CHECKED Then
+		IniWrite($config, "options", "ChkSTFFBarch", 1)
+	Else
+		IniWrite($config, "options", "ChkSTFFBarch", 0)
+	EndIf
+
+	IniWrite($config, "options", "txtTHpercentCollectors", GUICtrlRead($txtTHpercentCollectors))
+
     For $i = 1 to 24
 	   If GUICtrlRead(Eval("cmbDeDeploy" & StringRight("0" & $i,2))) <> $DeDeployEmptyString Then
 	      IniWrite($config, "options", "DeDeployType" & $i,_GUICtrlComboBox_GetCurSel(Eval("cmbDeDeploy" & StringRight("0" & $i,2)))-1)
