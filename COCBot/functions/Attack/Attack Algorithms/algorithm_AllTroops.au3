@@ -14,9 +14,9 @@
 ; ===============================================================================================================================
 
 Func getHeroes() ;Get information about your heroes
-;	$debugSetlog = 1
+	; $debugSetlog = 1
 	Local $aDeployButtonPositions = getUnitLocationArray()
-;	$debugSetlog = 0
+	; $debugSetlog = 0
 
 	$King = $aDeployButtonPositions[$eKing]
     $Queen = $aDeployButtonPositions[$eQueen]

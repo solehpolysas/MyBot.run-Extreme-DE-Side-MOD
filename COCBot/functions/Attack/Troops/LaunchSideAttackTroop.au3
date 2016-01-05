@@ -16,9 +16,9 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 		Local $RandomXY = Round(Random(0, 4))
 	EndIf
 
-;	$debugSetlog = 1
+	; $debugSetlog = 1
 	Local $aDeployButtonPositions = getUnitLocationArray()
-;	$debugSetlog = 0
+	; $debugSetlog = 0
 
 	For $i = 0 To UBound($listInfoDeploy) - 1
 		$kind = $listInfoDeploy[$i][0]
@@ -59,7 +59,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 							EndIf
 						EndIf
 					Case $kind = $eESpell
-	;					$debugSetlog = 1
+						; $debugSetlog = 1
 						$spellCount = spellCount($kind)
 
 						If $spellCount >= 4 Then ;4 quakes or go home
@@ -81,7 +81,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 						Else
 							If $spellCount > 0 and $spellCount < 4 Then SetLog("Only " & $spellCount & " " & getTranslatedTroopName($kind) & " available.  Waiting for 4.")
 						EndIf
-	;					$debugSetlog = 0
+						; $debugSetlog = 0
 					Case Else
 						$unitCount = unitCount($kind)
 
