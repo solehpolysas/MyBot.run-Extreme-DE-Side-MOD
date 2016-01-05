@@ -192,19 +192,19 @@ Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
         If $debugSetlog = 1 Then SetLog("List Deploy for Customized Side attack", $COLOR_PURPLE)
 
         Local $listInfoDeploy[24][5]
-        Local $waveCount,$waveNumber
+        Local $waveCount, $waveNumber
         Local $deploystring
 
         for $i = 0 to 23
             $listInfoDeploy[$i][0] = String($DeDeployType[$i])
             $listInfoDeploy[$i][1] = $nbSides
-                $waveCount = 0
+			$waveCount = 0
             $waveNumber = 0
             for $j = 0 to 23
-               If string($DeDeployType[$i])=string($DeDeployType[$j]) Then
+               If string($DeDeployType[$i]) = string($DeDeployType[$j]) Then
                   $waveCount = $waveCount + 1
-                  If $j<=$i Then
-                     $waveNumber = $waveNumber +1
+                  If $j <= $i Then
+                     $waveNumber = $waveNumber + 1
                   EndIf
                EndIf
             Next
