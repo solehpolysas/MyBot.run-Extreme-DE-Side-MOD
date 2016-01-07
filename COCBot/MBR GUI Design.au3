@@ -47,6 +47,7 @@ GUICtrlSetOnEvent(-1, "")
 #include "GUI\MBR GUI Design Tab Upgrade.au3"
 #include "GUI\MBR GUI Design Tab Notify.au3"
 #include "GUI\MBR GUI Design Tab Options.au3"
+#include "GUI\MBR GUI Design Tab Extra.au3"
 #include "GUI\MBR GUI Design Tab Expert.au3"
 #include "GUI\MBR GUI Design Tab Stats.au3" ; includes '$LastControlToHide" on GUI
 

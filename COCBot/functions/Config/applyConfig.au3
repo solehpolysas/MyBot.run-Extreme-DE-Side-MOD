@@ -1489,6 +1489,20 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtSWTTiles, $itxtSWTtiles)
 	ChkSnipeWhileTrain()
 
+	;Greedy Mode Top
+	If $ichkGreedy = 1 Then
+		GUICtrlSetState($chkGreedy, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkGreedy, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkSWTGreedy = 1 Then
+		GUICtrlSetState($chkSWTGreedy, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSWTGreedy, $GUI_UNCHECKED)
+	EndIf
+	;Greedy Mode Bottom
+
 	;multilanguage
 	LoadLanguagesComboBox() ; recreate combo box values
 	_GUICtrlComboBox_SetCurSel($cmbLanguage, _GUICtrlComboBox_FindStringExact($cmbLanguage, $sLanguage))

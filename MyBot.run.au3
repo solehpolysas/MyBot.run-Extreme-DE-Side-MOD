@@ -134,6 +134,7 @@ WEnd
 Func runBot() ;Bot that runs everything in order
 	$TotalTrainedTroops = 0
 	While 1
+		$greedOneTime = 0
 		$Restart = False
 		$fullArmy = False
 		$CommandStop = -1

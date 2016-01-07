@@ -1388,6 +1388,20 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "SnipeWhileTrain", "txtminArmyCapacityTHSnipe", GUICtrlRead($txtminArmyCapacityTHSnipe))
 	IniWrite($config, "SnipeWhileTrain", "SWTtiles", GUICtrlRead($txtSWTTiles))
 
+		;Greedy Mode Top
+	If GUICtrlRead($chkGreedy) = $GUI_CHECKED Then
+		IniWrite($config, "Greedy", "chkGreedy", 1)
+	Else
+		IniWrite($config, "Greedy", "chkGreedy", 0)
+	EndIf
+
+	If GUICtrlRead($chkSWTGreedy) = $GUI_CHECKED Then
+		IniWrite($config, "Greedy", "chkSWTGreedy", 1)
+	Else
+		IniWrite($config, "Greedy", "chkSWTGreedy", 0)
+	EndIf
+		;Greedy Mode Bottom
+
 	;Multilanguage
 
 	IniWrite($config, "other", "language", $sLanguage)

@@ -629,6 +629,11 @@ Func readConfig() ;Reads config and sets it to the variables
 		$itxtminArmyCapacityTHSnipe = IniRead($config, "SnipeWhileTrain", "txtminArmyCapacityTHSnipe", "35")
 		$itxtSWTtiles = IniRead($config, "SnipeWhileTrain", "SWTtiles", "1")
 
+		;Greedy Mode Top
+		$ichkGreedy	= IniRead($config, "Greedy", "chkGreedy", "0")
+		$ichkSWTGreedy	= IniRead($config, "Greedy", "chkSWTGreedy", "0")
+		;Greedy Mod Bottom
+
 ;Profile Switch
 		$ichkGoldSwitchMax = IniRead($config, "profiles", "chkGoldSwitchMax", "0")
 		$icmbGoldMaxProfile = IniRead($config, "profiles", "cmbGoldMaxProfile", "0")
