@@ -30,6 +30,7 @@ Func switchRecSetting()
 			_GUICtrlComboBox_SetCurSel($cmbDetectTrapedTH, 1)
 			GUICtrlSetState($chkUnbreakable, $GUI_UNCHECKED)
 			$OptTrophyMode = 1
+			_GUICtrlComboBox_SetCurSel($cmbTsSearchMode, 2)
 	;Troop
 			_GUICtrlComboBox_SetCurSel($cmbTroopComp, 9)
 			GUICtrlSetData ($txtFullTroop, "90")

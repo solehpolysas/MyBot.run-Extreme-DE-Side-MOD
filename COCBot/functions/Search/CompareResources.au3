@@ -45,7 +45,6 @@ Func CompareResources($pMode) ;Compares resources and returns true if conditions
 			$THLO = 1
 	EndSwitch
 
-
 	$SearchTHLResult = 0
 	;   Local $YourTHNumHere
 	;   For $i = 0 To 4
@@ -113,24 +112,12 @@ Func CompareResources($pMode) ;Compares resources and returns true if conditions
 			If $G = False And $E = False Then Return False
 		EndIf
 
-        ;modified so that the TH outside/snipe filter can over-ride the TH level filter
 		If $iChkMeetTH[$pMode] = 1 Then
-			If $THL = -1 Or $THL > $iCmbTH[$pMode] Then
-				If $iChkMeetTHO[$pMode] = 1 Then
-					If $THLO <> 1 Then
-						;TH is too high and is inside, no snipe
-						Return False
-					EndIf
-				Else
-					;TH is too high, Snipe mode not checked
-					Return False
-				EndIf
-			EndIf
-		Else
-			If $iChkMeetTHO[$pMode] = 1 and $THLO <>1 Then
-				;TH Level not set, TH is inside
-				Return False
-			EndIf
+			If $THL = -1 Or $THL > $iCmbTH[$pMode] Then Return False
+		EndIf
+
+		If $iChkMeetTHO[$pMode] = 1 Then
+			If $THLO <> 1 Then Return False
 		EndIf
 
 		If $iChkMeetTHO[$pMode] = 1 And $iChkMeetTH[$pMode] <> 1 Then
