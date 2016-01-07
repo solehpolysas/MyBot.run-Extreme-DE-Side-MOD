@@ -588,7 +588,27 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtUnBrkMaxDark, $iUnBrkMaxDark)
 	chkUnbreakable()
 
-	;attk their king
+	_GUICtrlComboBox_SetCurSel($cmbTsSearchMode, $iCmbTsSearchMode)
+	If $iChkMeetOne[$TS] = 1 Then
+		GUICtrlSetState($chkTsMeetOne, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkTsMeetOne, $GUI_UNCHECKED)
+	EndIf
+
+	If $iChkMeetDE[$TS] = 1 Then
+		GUICtrlSetState($chkTsMeetDE, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkTsMeetDE, $GUI_UNCHECKED)
+	EndIf
+	chkTSMeetDE()
+
+	GUICtrlSetData($txtTSMinGold, $iMinGold[$TS])
+	GUICtrlSetData($txtTSMinElixir, $iMinElixir[$TS])
+	GUICtrlSetData($txtTSMinGoldPlusElixir, $iMinGoldPlusElixir[$TS])
+	GUICtrlSetData($txtTSMinDarkElixir, $iMinDark[$TS])
+
+
+    ;attk their king
 	;attk their queen
 
 

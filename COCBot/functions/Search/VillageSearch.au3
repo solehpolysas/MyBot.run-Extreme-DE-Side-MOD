@@ -97,7 +97,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		If $OptBullyMode = 1 And Not ($Is_SearchLimit) Then SetLog("THBully Combo @" & $ATBullyMode & " SearchCount, " & $YourTHText)
 
 		If $chkATH = 1 Then $chkATHText = " Attack TH Outside "
-		If $OptTrophyMode = 1 Then $OptTrophyModeText = "THSnipe Combo, " & $THaddtiles & " Tile(s), "
+		If $OptTrophyMode = 1 Then $OptTrophyModeText = "THSnipe Combo for " & GUICtrlRead($cmbTsSearchMode)
 		If ($OptTrophyMode = 1 Or $chkATH = 1) And Not ($Is_SearchLimit) Then SetLog($OptTrophyModeText & $chkATHText & $txtAttackTHType)
 	EndIf
 
@@ -164,12 +164,17 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			$isModeActive[$LB] = True
 			$match[$LB] = CompareResources($LB)
 		ElseIf $iCmbSearchMode = 2 Then
-			For $i = 0 To $iModeCount - 1
+			For $i = 0 To $iModeCount - 2
 				$isModeActive[$i] = IsSearchModeActive($i)
 				If $isModeActive[$i] Then
 					$match[$i] = CompareResources($i)
 				EndIf
 			Next
+		EndIf
+
+		If $OptTrophyMode = 1 Then
+			$isModeActive[$TS] = True
+			$match[$TS] = CompareResources($TS)
 		EndIf
 
 		If _Sleep($iDelayRespond) Then Return
@@ -185,7 +190,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		Next
 
 		If _Sleep($iDelayRespond) Then Return
-		If $match[$DB] Or $match[$LB] Then
+		If $match[$DB] Or $match[$LB] Or $match[$TS] Then
 			$dbBase = checkDeadBase()
 		EndIf
 
@@ -201,13 +206,6 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				_WinAPI_DeleteObject($hBitmap)
 			EndIf
 			ExitLoop
-	    ;Check LB snipe first or else the bot might attack DE storage/Townhall
-		ElseIf $match[$LB] And Not $dbBase and $THLoc = "Out" And $iChkMeetTHO[$LB] = 1 Then
-		   SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
-		   SetLog("      " & "TH Outside Found! ", $COLOR_GREEN, "Lucida Console", 7.5)
-		   $logwrited = True
-		   $iMatchMode = $TS
-		   ExitLoop
 		ElseIf $match[$LB] And Not $dbBase Then
 	       If $iChkDeploySettings[$LB] = 5 And ($iSkipUndetectedDE > 0 Or $iSkipCentreDE > 0) Then
 			   If CheckfoundorcoreDE() = True Then
@@ -243,13 +241,15 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		EndIf
 
 		If _Sleep($iDelayRespond) Then Return
-		If $OptTrophyMode = 1 Then ;Enables Triple Mode Settings ;---compare resources
-			If SearchTownHallLoc() Then ; attack this base anyway because outside TH found to snipe
-				SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
-				SetLog("      " & "TH Outside Found! ", $COLOR_GREEN, "Lucida Console", 7.5)
-				$logwrited = True
-				$iMatchMode = $TS
-				ExitLoop
+		If $OptTrophyMode = 1 And $match[$TS] Then ;Enables Triple Mode Settings ;---compare resources
+			If $iCmbTSSearchMode = 2 Or ($iCmbTSSearchMode = 0 and $dbBase) OR ($iCmbTSSearchMode = 1 and Not $dbBase) Then
+				If SearchTownHallLoc() Then ; attack this base anyway because outside TH found to snipe
+					SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
+					SetLog("      " & "TH Outside Found! ", $COLOR_GREEN, "Lucida Console", 7.5)
+					$logwrited = True
+					$iMatchMode = $TS
+					ExitLoop
+				EndIf
 			EndIf
 		EndIf
 
@@ -372,7 +372,6 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			   SetLog("2nd attempt to detect the TownHall!", $COLOR_RED)
 			   $searchTH = checkTownhallADV2()
 			 EndIf
-
 
 			 If $searchTH = "-" Then ; retry with c# search, matching could not have been caused by heroes that partially hid the townhall
 			   If _Sleep($iDelayVillageSearch4) Then Return

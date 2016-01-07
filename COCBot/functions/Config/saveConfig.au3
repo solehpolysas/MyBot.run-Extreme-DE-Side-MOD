@@ -632,6 +632,26 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "advanced", "maxUnBrkelixir", GUICtrlRead($txtUnBrkMaxElixir))
 	IniWrite($config, "advanced", "maxUnBrkdark", GUICtrlRead($txtUnBrkMaxDark))
 
+	IniWrite($config, "advanced", "TsSearchMode", _GUICtrlComboBox_GetCurSel($cmbTsSearchMode))
+
+	IniWrite($config, "advanced", "TSMeetGE", _GUICtrlComboBox_GetCurSel($cmbTSMeetGE))
+	If GUICtrlRead($chkTSMeetDE) = $GUI_CHECKED Then
+		IniWrite($config, "advanced", "TSMeetDE", 1)
+	Else
+		IniWrite($config, "advanced", "TSMeetDE", 0)
+	EndIf
+
+	If GUICtrlRead($chkTsMeetOne) = $GUI_CHECKED Then
+		IniWrite($config, "advanced", "TSMeetOne", 1)
+	Else
+		IniWrite($config, "advanced", "TSMeetOne", 0)
+	EndIf
+
+	IniWrite($config, "advanced", "TSsearchGold", GUICtrlRead($txtTSMinGold))
+	IniWrite($config, "advanced", "TSsearchElixir", GUICtrlRead($txtTSMinElixir))
+	IniWrite($config, "advanced", "TSsearchGoldPlusElixir", GUICtrlRead($txtTSMinGoldPlusElixir))
+	IniWrite($config, "advanced", "TSsearchDark", GUICtrlRead($txtTSMinDarkElixir))
+
 	;atk their king
 	;attk their queen
 

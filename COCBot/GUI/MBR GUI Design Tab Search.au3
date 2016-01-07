@@ -270,7 +270,7 @@ $tabSearch = GUICtrlCreateTabItem("Search")
 		$picABMaxTH10 = GUICtrlCreateIcon($pIconLib, $eIcnTH10, $x + 160, $y - 3, 24, 24)
 			GUICtrlSetTip(-1, $txtTip)
  		$y += 21
- 		$chkABMeetTHO = GUICtrlCreateCheckbox("Snipe outside TH (For any TH level)", $x, $y, -1, -1)
+ 		$chkABMeetTHO = GUICtrlCreateCheckbox(GetTranslated(2,38, "Townhall Outside"), $x, $y, -1, -1)
  			$txtTip = GetTranslated(2,39, -1)
  			GUICtrlSetTip(-1, $txtTip)
 		$y += 21
@@ -522,7 +522,7 @@ $tabSearch = GUICtrlCreateTabItem("Search")
 					GUICtrlSetTip(-1, $txtTip)
 					GUICtrlSetState (-1, $GUI_HIDE)
 				$y += 21
-				$chkABMeetTHOHero = GUICtrlCreateCheckbox("Snipe outside TH (For any TH level)", $x, $y, -1, -1)
+				$chkABMeetTHOHero = GUICtrlCreateCheckbox(GetTranslated(2,38, "Townhall Outside"), $x, $y, -1, -1)
 					$txtTip = "Search for a base that has an exposed Townhall. (Outside of Walls)"
 					GUICtrlSetTip(-1, $txtTip)
 					GUICtrlSetState (-1, $GUI_HIDE)

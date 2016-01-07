@@ -13,23 +13,22 @@
 ; Example .......:
 ; ===============================================================================================================================
 
-Local $ResetStats = 0
-Local $iOldFreeBuilderCount, $iOldTotalBuilderCount, $iOldGemAmount ; builder and gem amounts
-Local $iOldGoldCurrent, $iOldElixirCurrent, $iOldDarkCurrent, $iOldTrophyCurrent ; current stats
-Local $iOldGoldTotal, $iOldElixirTotal, $iOldDarkTotal, $iOldTrophyTotal ; total stats
-Local $iOldGoldLast, $iOldElixirLast, $iOldDarkLast, $iOldTrophyLast ; loot and trophy gain from last raid
-Local $iOldGoldLastBonus, $iOldElixirLastBonus, $iOldDarkLastBonus ; bonus loot from last raid
-Local $iOldSkippedVillageCount, $iOldDroppedTrophyCount ; skipped village and dropped trophy counts
-Local $iOldCostGoldWall, $iOldCostElixirWall, $iOldCostGoldBuilding, $iOldCostElixirBuilding, $iOldCostDElixirHero ; wall, building and hero upgrade costs
-Local $iOldNbrOfWallsUppedGold, $iOldNbrOfWallsUppedElixir, $iOldNbrOfBuildingsUppedGold, $iOldNbrOfBuildingsUppedElixir, $iOldNbrOfHeroesUpped ; number of wall, building, hero upgrades with gold, elixir, delixir
-Local $iOldSearchCost, $iOldTrainCostElixir, $iOldTrainCostDElixir ; search and train troops cost
-Local $iOldNbrOfOoS ; number of Out of Sync occurred
-Local $iOldNbrOfTHSnipeFails, $iOldNbrOfTHSnipeSuccess ; number of fails and success while TH Sniping
-Local $iOldGoldFromMines, $iOldElixirFromCollectors, $iOldDElixirFromDrills ; number of resources gain by collecting mines, collectors, drills
-Local $iOldAttackedCount, $iOldAttackedVillageCount[$iModeCount + 2] ; number of attack villages for DB, LB, TB, TS
-Local $iOldTotalGoldGain[$iModeCount + 2], $iOldTotalElixirGain[$iModeCount + 2], $iOldTotalDarkGain[$iModeCount + 2], $iOldTotalTrophyGain[$iModeCount + 2] ; total resource gains for DB, LB, TB, TS
-Local $iOldNbrOfDetectedMines[$iModeCount + 2], $iOldNbrOfDetectedCollectors[$iModeCount + 2], $iOldNbrOfDetectedDrills[$iModeCount + 2] ; number of mines, collectors, drills detected for DB, LB, TB
-Local $iOldsmartZapGain = 0, $iOldNumLTSpellsUsed = 0 ; Used to Update Smart Zap Totals
+Global $ResetStats = 0
+Global $iOldFreeBuilderCount, $iOldTotalBuilderCount, $iOldGemAmount ; builder and gem amounts
+Global $iOldGoldCurrent, $iOldElixirCurrent, $iOldDarkCurrent, $iOldTrophyCurrent ; current stats
+Global $iOldGoldTotal, $iOldElixirTotal, $iOldDarkTotal, $iOldTrophyTotal ; total stats
+Global $iOldGoldLast, $iOldElixirLast, $iOldDarkLast, $iOldTrophyLast ; loot and trophy gain from last raid
+Global $iOldGoldLastBonus, $iOldElixirLastBonus, $iOldDarkLastBonus ; bonus loot from last raid
+Global $iOldSkippedVillageCount, $iOldDroppedTrophyCount ; skipped village and dropped trophy counts
+Global $iOldCostGoldWall, $iOldCostElixirWall, $iOldCostGoldBuilding, $iOldCostElixirBuilding, $iOldCostDElixirHero ; wall, building and hero upgrade costs
+Global $iOldNbrOfWallsUppedGold, $iOldNbrOfWallsUppedElixir, $iOldNbrOfBuildingsUppedGold, $iOldNbrOfBuildingsUppedElixir, $iOldNbrOfHeroesUpped ; number of wall, building, hero upgrades with gold, elixir, delixir
+Global $iOldSearchCost, $iOldTrainCostElixir, $iOldTrainCostDElixir ; search and train troops cost
+Global $iOldNbrOfOoS ; number of Out of Sync occurred
+Global $iOldNbrOfTHSnipeFails, $iOldNbrOfTHSnipeSuccess ; number of fails and success while TH Sniping
+Global $iOldGoldFromMines, $iOldElixirFromCollectors, $iOldDElixirFromDrills ; number of resources gain by collecting mines, collectors, drills
+Global $iOldAttackedCount, $iOldAttackedVillageCount[$iModeCount+1] ; number of attack villages for DB, LB, TB, TS
+Global $iOldTotalGoldGain[$iModeCount+1], $iOldTotalElixirGain[$iModeCount+1], $iOldTotalDarkGain[$iModeCount+1], $iOldTotalTrophyGain[$iModeCount+1] ; total resource gains for DB, LB, TB, TS
+Global $iOldNbrOfDetectedMines[$iModeCount+1], $iOldNbrOfDetectedCollectors[$iModeCount+1], $iOldNbrOfDetectedDrills[$iModeCount+1] ; number of mines, collectors, drills detected for DB, LB, TB
 
 Func UpdateStats()
 	If $FirstRun = 1 Then
@@ -71,7 +70,7 @@ Func UpdateStats()
 			$iOldDarkCurrent = $iDarkCurrent
 		 EndIf
 
-		; DE Smart Zap
+	  ; DE Smart Zap
 	    GUICtrlSetData($lblSmartZap, _NumberFormat($smartZapGain, True))
         GUICtrlSetData($lblLightningUsed, _NumberFormat($NumLTSpellsUsed, True))
 
@@ -305,7 +304,7 @@ Func UpdateStats()
 		$iOldDElixirFromDrills = $iDElixirFromDrills
 	 EndIf
 
-#cs	If $lblSmartZap <> $smartZapGain Then
+	 	If $lblSmartZap <> $smartZapGain Then
 	   GUICtrlSetData($lblSmartZap, _NumberFormat($smartZapGain, True))
 	   $lblSmartZap = $smartZapGain
 	EndIf
@@ -313,21 +312,11 @@ Func UpdateStats()
 	If $lblLightningUsed <> $NumLTSpellsUsed Then
 	   GUICtrlSetData($lblLightningUsed, _NumberFormat($NumLTSpellsUsed, True))
 	   $lblLightningUsed = $NumLTSpellsUsed
-#ce	EndIf
-
-	If $iOldSmartZapGain <> $smartZapGain Then
-		GUICtrlSetData($lblSmartZap, _NumberFormat($smartZapGain, True))
-		$iOldSmartZapGain = $smartZapGain
-	EndIf
-
-	If $iOldNumLTSpellsUsed <> $NumLTSpellsUsed Then
-		GUICtrlSetData($lblLightningUsed, _NumberFormat($NumLTSpellsUsed, True))
-		$iOldNumLTSpellsUsed = $NumLTSpellsUsed
 	EndIf
 
 	Local $iAttackedCount = 0
 
-	For $i = 0 To $iModeCount + 1
+	For $i = 0 To $iModeCount
 
 		If $iOldAttackedVillageCount[$i] <> $iAttackedVillageCount[$i] Then
 			GUICtrlSetData($lblAttacked[$i], _NumberFormat($iAttackedVillageCount[$i], True))
@@ -363,7 +352,7 @@ Func UpdateStats()
 		$iOldAttackedCount = $iAttackedCount
 	EndIf
 
-	For $i = 0 To $iModeCount + 1
+	For $i = 0 To $iModeCount
 
 		If $i = $TS Then ContinueLoop
 
@@ -453,7 +442,7 @@ Func ResetStats()
 	$iGoldFromMines = 0
 	$iElixirFromCollectors = 0
 	$iDElixirFromDrills = 0
-	For $i = 0 To $iModeCount + 1
+	For $i = 0 To $iModeCount
 		$iAttackedVillageCount[$i] = 0
 		$iTotalGoldGain[$i] = 0
 		$iTotalElixirGain[$i] = 0

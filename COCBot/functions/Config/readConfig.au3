@@ -281,6 +281,30 @@ Func readConfig() ;Reads config and sets it to the variables
 		$iUnBrkMaxElixir = IniRead($config, "advanced", "maxUnBrkelixir", "600000")
 		$iUnBrkMaxDark = IniRead($config, "advanced", "maxUnBrkdark", "10000")
 
+		$iCmbTsSearchMode = IniRead($config, "advanced", "TsSearchMode", "2")
+		$iCmbTsMeetGE = IniRead($config, "search", "DBMeetGE", "1")
+
+        ;Not all of these are used, but the loop may expect them, so it matches $LB and $TS
+		$iChkEnableAfter[$TS] = IniRead($config, "advanced", "TSEnableAfter", "0")
+		$iCmbMeetGE[$TS] = IniRead($config, "advanced", "TSMeetGE", "1")
+		$iChkMeetDE[$TS] = IniRead($config, "advanced", "TSMeetDE", "0")
+		$iChkMeetTrophy[$TS] = IniRead($config, "advanced", "TSMeetTrophy", "0")
+		$iChkMeetTH[$TS] = IniRead($config, "advanced", "TSMeetTH", "0")
+		$iChkMeetTHO[$TS] = IniRead($config, "advanced", "TSMeetTHO", "0")
+		$iChkWeakBase[$TS] = IniRead($config, "advanced", "TSWeakBase", "0")
+		$iChkMeetOne[$TS] = IniRead($config, "advanced", "TSMeetOne", "0")
+
+		$iEnableAfterCount[$TS] = IniRead($config, "advanced", "TSEnableAfterCount", "150")
+		$iMinGold[$TS] = IniRead($config, "advanced", "TSsearchGold", "80000")
+		$iMinElixir[$TS] = IniRead($config, "advanced", "TSsearchElixir", "80000")
+		$iMinGoldPlusElixir[$TS] = IniRead($config, "advanced", "TSsearchGoldPlusElixir", "160000")
+		$iMinDark[$TS] = IniRead($config, "advanced", "TSsearchDark", "0")
+		$iMinTrophy[$TS] = IniRead($config, "advanced", "TSsearchTrophy", "0")
+		$iCmbTH[$TS] = IniRead($config, "advanced", "TSTHLevel", "0")
+		$iCmbWeakMortar[$TS] = IniRead($config, "advanced", "TSWeakMortar", "5")
+		$iCmbWeakWizTower[$TS] = IniRead($config, "advanced", "TSWeakWizTower", "4")
+
+
 		;atk their king
 		;atk their queen
 
