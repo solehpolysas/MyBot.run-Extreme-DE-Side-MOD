@@ -186,31 +186,60 @@ Func getNumberOfSides() ;Returns the number of sides to attack from
     Return $nbSides
 EndFunc
 
+Func getNumOfWaves($kind)
+	Local $iReturn = 0
+
+	For $i = 0 To 23
+		If String($DeDeployType[$i]) <> $DeDeployEmptyString And $DeDeployType[$i] = $kind Then $iReturn = $iReturn + 1
+	Next
+
+	Return $iReturn
+EndFunc
+
+Func getUnitWavesArray()
+	Local $aUnitWaves[$eCCSpell + 1]
+
+	; Loop through all the units to get their number of waves.
+	For $i = $eBarb To $eCCSpell
+		$aUnitWaves[$i] = getNumOfWaves($i)
+		If $debugSetlog = 0 Then SetLog($aUnitWaves[$i] & " waves of " & getTranslatedTroopName($i))
+	Next
+
+	Return $aUnitWaves
+EndFunc
+
 Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
     ; $ListInfoDeploy = [Troop, No. of Sides, $WaveNb, $MaxWaveNb, $slotsPerEdge]
     If $iMatchMode = $LB And $iChkDeploySettings[$LB] >= 5 Then ; Customized side wave deployment here for DE and TH side
         If $debugSetlog = 1 Then SetLog("List Deploy for Customized Side attack", $COLOR_PURPLE)
 
         Local $listInfoDeploy[24][5]
-        Local $waveCount, $waveNumber
-        Local $deploystring
+        Local $aUnitWaves = getUnitWavesArray()
+		Local $unitType, $numUnits, $numWaves, $waveNumber, $j
 
         for $i = 0 to 23
-            $listInfoDeploy[$i][0] = String($DeDeployType[$i])
-            $listInfoDeploy[$i][1] = $nbSides
-			$waveCount = 0
-            $waveNumber = 0
-            for $j = 0 to 23
-               If string($DeDeployType[$i]) = string($DeDeployType[$j]) Then
-                  $waveCount = $waveCount + 1
-                  If $j <= $i Then
-                     $waveNumber = $waveNumber + 1
-                  EndIf
-               EndIf
-            Next
-            $listInfoDeploy[$i][2] = $waveNumber
-            $listInfoDeploy[$i][3] = $waveCount
-            $listInfoDeploy[$i][4] = $DeDeployPosition[$i]
+			If String($DeDeployType[$i]) <> $DeDeployEmptyString Then
+				$unitType = $DeDeployType[$i]
+
+				$listInfoDeploy[$i][0] = String($unitType)
+				$listInfoDeploy[$i][1] = $nbSides
+
+				$numUnits = unitCount($unitType)
+				$numWaves = $aUnitWaves[$unitType]
+
+				; You can put your redundancy here if the number of units is not enough for the number of waves
+
+				$waveNumber = 0
+				$j = 0
+				While $j <= $i
+					If $DeDeployType[$i] = $DeDeployType[$j] Then $waveNumber = $waveNumber + 1
+					$j = $j + 1
+				WEnd
+
+				$listInfoDeploy[$i][2] = $waveNumber
+				$listInfoDeploy[$i][3] = $numWaves
+				$listInfoDeploy[$i][4] = $DeDeployPosition[$i]
+			EndIF
         Next
     ElseIf $iChkDeploySettings[$iMatchMode] = 4 Then ;Four Finger deployment
         If $debugSetlog = 1 Then SetLog("ListDeploy for Four Finger attack", $COLOR_PURPLE)
@@ -228,7 +257,7 @@ Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
             , ["HEROES", 1, 2, 1, 1] _
             ]
     Else
-        If $debugSetlog =1 Then SetLog("List Deploy for Standard attacks", $COLOR_PURPLE)
+        If $debugSetlog = 1 Then SetLog("List Deploy for Standard attacks", $COLOR_PURPLE)
 
         Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 2] _
             , [$eBarb, $nbSides, 1, 2, 0] _

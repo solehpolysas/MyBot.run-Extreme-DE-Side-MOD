@@ -216,5 +216,5 @@
 ;#include "functions\Village\DESideSpell.au3"
 ;#include "functions\Village\DESideDSpell.au3"
 #include "functions\Village\DrillZapSpell.au3"
-
+#include "functions\Village\SmartTrain.au3"
 

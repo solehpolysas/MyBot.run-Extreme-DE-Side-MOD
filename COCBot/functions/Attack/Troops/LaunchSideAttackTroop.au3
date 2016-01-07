@@ -42,6 +42,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 					Case $kind = $eCastle Or $kind = "CC"
 						dropCC($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $CC)
 					Case $kind = $eRSpell Or $kind = $eHSpell Or $kind = $eJSpell Or $kind = $eHaSpell Or $kind = $eFSpell Or $kind = $ePSpell
+						$kind = Number($listInfoDeploy[$i][0])
 						$spellCount = spellCount($kind)
 
 						If $spellCount > 0 Then
@@ -60,6 +61,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 						EndIf
 					Case $kind = $eESpell
 						; $debugSetlog = 1
+						$kind = Number($listInfoDeploy[$i][0])
 						$spellCount = spellCount($kind)
 
 						If $spellCount >= 4 Then ;4 quakes or go home
@@ -83,6 +85,7 @@ Func LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
 						EndIf
 						; $debugSetlog = 0
 					Case Else
+						$kind = Number($listInfoDeploy[$i][0])
 						$unitCount = unitCount($kind)
 
 						If $unitCount > 0 Then
