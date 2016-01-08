@@ -629,6 +629,28 @@ Func readConfig() ;Reads config and sets it to the variables
 		$itxtminArmyCapacityTHSnipe = IniRead($config, "SnipeWhileTrain", "txtminArmyCapacityTHSnipe", "35")
 		$itxtSWTtiles = IniRead($config, "SnipeWhileTrain", "SWTtiles", "1")
 
+		; Skip Functions when Camp x% Full
+		$ichkSkipActive	= IniRead($config, "Skip", "chkSkipActive", "0")
+		$itxtSkipHowMuch	= IniRead($config, "Skip", "Percent", "90")
+		$ichkSkipLab	= IniRead($config, "Skip", "chkSkipLab", "0")
+		$ichkSkipDonate	= IniRead($config, "Skip", "chkSkipDonate", "0")
+		$ichkSkipTombstones	= IniRead($config, "Skip", "chkSkipTombstones", "0")
+		$ichkSkipCollect	= IniRead($config, "Skip", "chkSkipCollect", "0")
+		$ichkSkipRearm	= IniRead($config, "Skip", "chkSkipRearm", "0")
+		$ichkSkipWall	= IniRead($config, "Skip", "chkSkipWall", "0")
+		$ichkSkipBuilding	= IniRead($config, "Skip", "chkSkipBuilding", "0")
+
+		; Skip Functions when Camp x% Full
+		$ichkSkipActive	= IniRead($config, "Skip", "chkSkipActive", "0")
+		$itxtSkipHowMuch	= IniRead($config, "Skip", "Percent", "90")
+		$ichkSkipLab	= IniRead($config, "Skip", "chkSkipLab", "0")
+		$ichkSkipDonate	= IniRead($config, "Skip", "chkSkipDonate", "0")
+		$ichkSkipTombstones	= IniRead($config, "Skip", "chkSkipTombstones", "0")
+		$ichkSkipCollect	= IniRead($config, "Skip", "chkSkipCollect", "0")
+		$ichkSkipRearm	= IniRead($config, "Skip", "chkSkipRearm", "0")
+		$ichkSkipWall	= IniRead($config, "Skip", "chkSkipWall", "0")
+		$ichkSkipBuilding	= IniRead($config, "Skip", "chkSkipBuilding", "0")
+
 		;Greedy Mode Top
 		$ichkGreedy	= IniRead($config, "Greedy", "chkGreedy", "0")
 		$ichkSWTGreedy	= IniRead($config, "Greedy", "chkSWTGreedy", "0")

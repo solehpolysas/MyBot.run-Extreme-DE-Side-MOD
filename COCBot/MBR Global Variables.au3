@@ -825,6 +825,18 @@ Global $Is_SearchLimit = False
 
 Global $canRequestCC = True
 
+; Skip when Camps x% full top
+Global $ichkSkipActive
+Global $itxtSkipHowMuch
+Global $ichkSkipLab
+Global $ichkSkipDonate
+Global $ichkSkipTombstones
+Global $ichkSkipCollect
+Global $ichkSkipRearm
+Global $ichkSkipWall
+Global $ichkSkipBuilding
+; Skip when Camps x% full top
+
 ;Greedy Mode Top
 Global $greedOneTime = 0, $Greedy
 Global $ichkGreedy, $ichkSWTGreedy

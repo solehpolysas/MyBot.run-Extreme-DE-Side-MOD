@@ -37,3 +37,27 @@ Func chkGreedy()
 		GUICtrlSetState($chkGreedy, $GUI_DISABLE)
 	EndIf
 EndFunc   ;==>chkSWTGreedy
+
+Func chkSkipActive()
+	If GUICtrlRead($chkSkipActive) = $GUI_CHECKED Then
+;		GUICtrlSetState($txtSkipHowMuch, $GUI_ENABLE)
+;		GUICtrlSetData($txtSkipHowMuch, $itxtSkipHowMuch)
+		GUICtrlSetState($chkSkipCollect, $GUI_ENABLE)
+		GUICtrlSetState($chkSkipTombstones, $GUI_ENABLE)
+		GUICtrlSetState($chkSkipRearm, $GUI_ENABLE)
+		GUICtrlSetState($chkSkipLab, $GUI_ENABLE)
+		GUICtrlSetState($chkSkipWall, $GUI_ENABLE)
+		GUICtrlSetState($chkSkipBuilding, $GUI_ENABLE)
+		GUICtrlSetState($chkSkipDonate, $GUI_ENABLE)
+	Else
+;		GUICtrlSetState($txtSkipHowMuch, $GUI_DISABLE)
+;		GUICtrlSetData($txtSkipHowMuch, $itxtSkipHowMuch)
+		GUICtrlSetState($chkSkipCollect, $GUI_DISABLE)
+		GUICtrlSetState($chkSkipTombstones, $GUI_DISABLE)
+		GUICtrlSetState($chkSkipRearm, $GUI_DISABLE)
+		GUICtrlSetState($chkSkipLab, $GUI_DISABLE)
+		GUICtrlSetState($chkSkipWall, $GUI_DISABLE)
+		GUICtrlSetState($chkSkipBuilding, $GUI_DISABLE)
+		GUICtrlSetState($chkSkipDonate, $GUI_DISABLE)
+	EndIf
+EndFunc   ;==>chkSkipActive

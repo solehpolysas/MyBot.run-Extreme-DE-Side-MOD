@@ -1388,6 +1388,64 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "SnipeWhileTrain", "txtminArmyCapacityTHSnipe", GUICtrlRead($txtminArmyCapacityTHSnipe))
 	IniWrite($config, "SnipeWhileTrain", "SWTtiles", GUICtrlRead($txtSWTTiles))
 
+;Skip Function When Camp x% full top
+	If GUICtrlRead($chkSkipActive) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipActive", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipActive", 0)
+	EndIf
+
+	IniWrite($config, "Skip", "Percent", GUICtrlRead($txtSkipHowMuch))
+
+
+	If GUICtrlRead($chkSkipCollect) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipCollect", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipCollect", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipTombstones) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipTombstones", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipTombstones", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipRearm) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipRearm", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipRearm", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipLab) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipLab", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipLab", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipWall) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipWall", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipWall", 0)
+	EndIf
+
+	If GUICtrlRead($chkSkipBuilding) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipBuilding", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipBuilding", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipDonate) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipDonate", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipDonate", 0)
+	EndIf
+;Skip Function When Camp x% full top
+
 		;Greedy Mode Top
 	If GUICtrlRead($chkGreedy) = $GUI_CHECKED Then
 		IniWrite($config, "Greedy", "chkGreedy", 1)

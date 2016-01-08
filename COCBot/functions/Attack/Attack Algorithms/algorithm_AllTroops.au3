@@ -65,7 +65,6 @@ Func useTownHallSnipe() ;End battle after a town hall snipe
     EndIf
 
     ;If $OptTrophyMode = 1 And SearchTownHallLoc() Then Return ;Exit attacking if trophy hunting and not bullymode
-
     If ($THusedKing = 0 and $THusedQueen=0) Then
         Setlog("Wait few sec before close attack")
         If _Sleep(random(2,5,1)*1000) Then Return ;wait 2-5 second before exit if king and queen are not dropped
@@ -85,7 +84,7 @@ Func useTownHallSnipe() ;End battle after a town hall snipe
     If IsEndBattlePage() Then
         ClickP($aConfirmSurrender, 1, 0, "#0031") ;Click Confirm
         If _Sleep($iDelayalgorithm_AllTroops1) Then Return
-    EndIf
+	EndIf
 EndFunc
 
 Func useSmartDeploy() ;Gets infomation about the red area for Smart Deploy

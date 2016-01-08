@@ -1489,6 +1489,63 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtSWTTiles, $itxtSWTtiles)
 	ChkSnipeWhileTrain()
 
+	;Skip Function When Camp x% full top
+
+	If $ichkSkipActive = 1 Then
+		GUICtrlSetState($chkSkipActive, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSkipActive, $GUI_UNCHECKED)
+	EndIf
+
+	If $itxtSkipHowMuch = "" Then
+		GUICtrlSetData($txtSkipHowMuch, "90")
+	Else
+		GUICtrlSetData($txtSkipHowMuch, $itxtSkipHowMuch)
+	EndIf
+
+	If $ichkSkipCollect = 1 Then
+		GUICtrlSetState($chkSkipCollect, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSkipCollect, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkSkipTombstones = 1 Then
+		GUICtrlSetState($chkSkipTombstones, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSkipTombstones, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkSkipRearm = 1 Then
+		GUICtrlSetState($chkSkipRearm, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSkipRearm, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkSkipLab = 1 Then
+		GUICtrlSetState($chkSkipLab, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSkipLab, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkSkipWall = 1 Then
+		GUICtrlSetState($chkSkipWall, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSkipWall, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkSkipBuilding = 1 Then
+		GUICtrlSetState($chkSkipBuilding, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSkipBuilding, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkSkipDonate = 1 Then
+		GUICtrlSetState($chkSkipDonate, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSkipDonate, $GUI_UNCHECKED)
+	EndIf
+	;Skip Function When Camp x% full bottom
+
 	;Greedy Mode Top
 	If $ichkGreedy = 1 Then
 		GUICtrlSetState($chkGreedy, $GUI_CHECKED)
