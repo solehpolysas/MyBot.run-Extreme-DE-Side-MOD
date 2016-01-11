@@ -310,6 +310,7 @@ Func Train()
 
 		; Balance Archers ,Barbs and goblins
 		If $OptTrophyMode = 1 And $icmbTroopComp <> 8 And $iSniperTroop = 3 Then
+
 			For $i = 0 To UBound($TroopName) - 1
 				If Number(Eval($TroopName[$i] & "Comp")) <> 0 Then
 					If $TroopName[$i] = "Barb" Or $TroopName[$i] = "Arch" Or $TroopName[$i] = "Gobl" Then

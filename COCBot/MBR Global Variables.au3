@@ -328,6 +328,10 @@ Global $ichkUseHSpellsTH = 0
 Global $THusedKing = 0
 Global $THusedQueen = 0
 Global $THusedWarden = 0
+Global $TestLoots = False ;Noyax
+Global $iOptAttIfDB = 1 ; Noyax attack when TH Snipe found DB
+Global $iPercentThsn = 10 ; Noyax % loots to considere dead base in TH Snipe
+
 
 Global $ichkSmartLightSpell
 global $ichkTrainLightSpell
@@ -829,6 +833,22 @@ Global $Is_SearchLimit = False
 
 Global $canRequestCC = True
 
+; Skip when Camps x% full top
+Global $ichkSkipActive
+Global $itxtSkipHowMuch
+Global $ichkSkipLab
+Global $ichkSkipDonate
+Global $ichkSkipTombstones
+Global $ichkSkipCollect
+Global $ichkSkipRearm
+Global $ichkSkipWall
+Global $ichkSkipBuilding
+; Skip when Camps x% full top
+
+;Greedy Mode Top
+Global $greedOneTime = 0, $Greedy
+Global $ichkGreedy, $ichkSWTGreedy
+;Greedy Mode Bottom
 
 ; Heroes upgrade
 Global $ichkUpgradeKing = 0
@@ -869,7 +889,7 @@ Global $ichkTrophySwitchMax, $itxtMaxTrophyAmount, $icmbTrophyMaxProfile, $ichkT
 ;Hero Healing Filter
 Global $LBsave[17], $LBHeroFilter, $LBAQFilter, $LBBKFilter, $iSkipCentreDE, $iSkipUndetectedDE, $DECorepix = 15
 Global $LBBKEQFilter
-Global $iCmbMeetGEHero, $iChkMeetDEHero, $iChkMeetTrophyHero, $iChkMeetTHHero, $iChkMeetTHOHero, $iChkWeakBaseHero, $iChkMeetOneHero, $iEnableAfterCountHero, $iMinGoldHero
+Global 	$iCmbMeetGEHero, $iChkMeetDEHero, $iChkMeetTrophyHero, $iChkMeetTHHero, $iChkMeetTHOHero, $iChkWeakBaseHero, $iChkMeetOneHero, $iEnableAfterCountHero, $iMinGoldHero
 Global $iMinElixirHero, $iMinGoldPlusElixirHero,$iMinDarkHero, $iMinTrophyHero, $iCmbTHHero, $iCmbWeakMortarHero, $iCmbWeakWizTowerHero, $iMaxTHHero
 Global $THString
 

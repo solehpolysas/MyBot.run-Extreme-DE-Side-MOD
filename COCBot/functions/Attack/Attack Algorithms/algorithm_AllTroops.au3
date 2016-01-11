@@ -29,6 +29,7 @@ Func getHeroes() ;Get information about your heroes
         SetLog("Use Warden SLOT n° " & $Warden, $COLOR_PURPLE)
         SetLog("Use CC SLOT n° " & $CC, $COLOR_PURPLE)
     EndIf
+
 EndFunc
 
 Func useHeroesAbility() ;Use the heroes abilities if appropriate
@@ -55,7 +56,8 @@ Func useHeroesAbility() ;Use the heroes abilities if appropriate
 EndFunc
 
 Func useTownHallSnipe() ;End battle after a town hall snipe
-    SwitchAttackTHType()
+
+	SwitchAttackTHType()
 
     If $zoomedin = True Then
         ZoomOut()
@@ -65,7 +67,7 @@ Func useTownHallSnipe() ;End battle after a town hall snipe
     EndIf
 
     ;If $OptTrophyMode = 1 And SearchTownHallLoc() Then Return ;Exit attacking if trophy hunting and not bullymode
-
+If $iMatchMode = $TS   Then; Return ;Exit attacking if trophy hunting and not bullymode ; edit by Rizor
     If ($THusedKing = 0 and $THusedQueen=0) Then
         Setlog("Wait few sec before close attack")
         If _Sleep(random(2,5,1)*1000) Then Return ;wait 2-5 second before exit if king and queen are not dropped
@@ -82,10 +84,11 @@ Func useTownHallSnipe() ;End battle after a town hall snipe
 
     If IsAttackPage() Then ClickP($aSurrenderButton, 1, 0, "#0030") ;Click Surrender
     If _Sleep($iDelayalgorithm_AllTroops3) Then Return
-	If IsEndBattlePage() Then
+    If IsEndBattlePage() Then
         ClickP($aConfirmSurrender, 1, 0, "#0031") ;Click Confirm
         If _Sleep($iDelayalgorithm_AllTroops1) Then Return
-    EndIf
+	EndIf
+EndIf
 EndFunc
 
 Func useSmartDeploy() ;Gets infomation about the red area for Smart Deploy
@@ -147,6 +150,7 @@ Func useSmartDeploy() ;Gets infomation about the red area for Smart Deploy
 
         UpdateStats()
     EndIf
+
 EndFunc
 
 Func getNumberOfSides() ;Returns the number of sides to attack from
@@ -155,35 +159,42 @@ Func getNumberOfSides() ;Returns the number of sides to attack from
     Switch $iChkDeploySettings[$iMatchMode]
         Case $eOneSide ;Single sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on a single side", $COLOR_BLUE)
+
             $nbSides = 1
         Case $eTwoSides ;Two sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on two sides", $COLOR_BLUE)
+
             $nbSides = 2
         Case $eThreeSides ;Three sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on three sides", $COLOR_BLUE)
+
             $nbSides = 3
         Case $eAllSides ;All sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on all sides", $COLOR_BLUE)
+
             $nbSides = 4
-	    Case $eSmartSave ;Save Troops Style ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		Case $eSmartSave ;Save Troops Style ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking with save troops for collectors", $COLOR_BLUE)
-			$nbSides = 4
-			$saveTroops = 1
+ -			$nbSides = 4
+ -			$saveTroops = 1
         Case $eFourFinger ;Four Finger ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking four finger fight style", $COLOR_BLUE)
             $nbSides = 5
+
         Case $eDESide ;DE Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on Dark Elixir Side.", $COLOR_BLUE)
-			$nbSides = 1
+
+            $nbSides = 1
         Case $eTHSide ;TH Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on Town Hall Side.", $COLOR_BLUE)
+
             $nbSides = 1
     EndSwitch
 
     Return $nbSides
 EndFunc
 
-Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroops
+Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
     ; $ListInfoDeploy = [Troop, No. of Sides, $WaveNb, $MaxWaveNb, $slotsPerEdge]
     If $iMatchMode = $LB And ($iChkDeploySettings[$LB] = $eDESide Or $iChkDeploySettings[$LB] = $eTHSide) Then ; Customized side wave deployment here for DE and TH side
         If $debugSetlog = 1 Then SetLog("List Deploy for Customized Side attack", $COLOR_PURPLE)
@@ -223,7 +234,7 @@ Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroops
             , [$eMini, $nbSides, 1, 1, 0] _
             , [$eGobl, $nbSides, 2, 2, 0] _
             , ["HEROES", 1, 2, 1, 1] _
-		]
+		]		 +            ]
     ElseIf $saveTroops = 1 Then ; Save Troops Style
         If $debugSetlog = 1 Then SetLog("List Deploy for Save Troops attacks", $COLOR_PURPLE)
 
@@ -255,7 +266,7 @@ Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroops
             , [$eArch, $nbSides, 2, 2, 0] _
             , [$eGobl, $nbSides, 2, 2, 0] _
             , ["HEROES", 1, 2, 1, 1] _
-		]
+            ]
     EndIf
 
     Return $listInfoDeploy
@@ -268,10 +279,10 @@ Func dropRemainingTroops($nbSides) ;Uses any left over troops
         PrepareAttack($iMatchMode, True) ;Check remaining quantities
         For $i = $eBarb To $eLava ; lauch all remaining troops
             ;If $i = $eBarb Or $i = $eArch Then
-            LaunchTroops($i, $nbSides, 0, 1)
+            LauchTroops($i, $nbSides, 0, 1)
             CheckHeroesHealth()
             ;Else
-            ;     LaunchTroops($i, $nbSides, 0, 1, 2)
+            ;     LauchTroops($i, $nbSides, 0, 1, 2)
             ;EndIf
             If _Sleep($iDelayalgorithm_AllTroops5) Then Return
         Next

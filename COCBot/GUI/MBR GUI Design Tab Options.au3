@@ -55,15 +55,15 @@
 	    GUICtrlSetTip(-1, $txtTip)
 
    Local $x = 190, $y = 150
-	  $grpSaveTroops = GUICtrlCreateGroup("SaveTroop", $x, $y - 20, 90, 65)
-         $chkChangeFF = GUICtrlCreateCheckbox("Use FF", $x, $y -5, -1, -1)
-			$txtTip = "Change to FF Barch if less than % of collectors near RED LINE."
-			GUICtrlSetTip(-1, $txtTip)
-		$txtTHpercentCollectors = GUICtrlCreateInput("80", $x, $y + 20, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetLimit(-1, 100)
-		$lblChangeFF = GUICtrlCreateLabel("% collec.", $x + 40, $y + 25, -1, -1)
-		   	GUICtrlSetTip(-1, $txtTip)
+ 	  $grpSaveTroops = GUICtrlCreateGroup("SaveTroop", $x, $y - 20, 90, 65)
+          $chkChangeFF = GUICtrlCreateCheckbox("Use FF", $x, $y -5, -1, -1)
+ 			$txtTip = "Change to FF Barch if less than % of collectors near RED LINE."
+ 			GUICtrlSetTip(-1, $txtTip)
+ 		$txtTHpercentCollectors = GUICtrlCreateInput("80", $x, $y + 20, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+ 			GUICtrlSetTip(-1, $txtTip)
+ 			GUICtrlSetLimit(-1, 100)
+ 		$lblChangeFF = GUICtrlCreateLabel("% collec.", $x + 40, $y + 25, -1, -1)
+ 		   	GUICtrlSetTip(-1, $txtTip)
 
     ;;;;;;;;;;;;;;;;;
     ;;; TROOP Deployment

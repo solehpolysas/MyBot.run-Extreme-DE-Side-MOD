@@ -37,17 +37,16 @@ Func chkDBSmartAttackRedArea()
         Next
     Else
         GUICtrlSetState($chkDBSmartAttackRedArea, $GUI_SHOW)
-	 EndIf
+   EndIf
 
-   If _GUICtrlComboBox_GetCurSel($cmbDBDeploy) = 4 Then
-		GUICtrlSetState($chkDBSmartAttackRedArea, $GUI_CHECKED)
-		GUICtrlSetState($chkDBAttackNearGoldMine, $GUI_CHECKED)
-		GUICtrlSetState($chkDBAttackNearElixirCollector, $GUI_CHECKED)
-		GUICtrlSetState($chkDBAttackNearDarkElixirDrill, $GUI_CHECKED)
-		GUICtrlSetState($chkAttackTH, $GUI_UNCHECKED)
-		chkDBSmartAttackRedArea()
-	EndIf
-
+    If _GUICtrlComboBox_GetCurSel($cmbDBDeploy) = 4 Then
+ 		GUICtrlSetState($chkDBSmartAttackRedArea, $GUI_CHECKED)
+ 		GUICtrlSetState($chkDBAttackNearGoldMine, $GUI_CHECKED)
+ 		GUICtrlSetState($chkDBAttackNearElixirCollector, $GUI_CHECKED)
+ 		GUICtrlSetState($chkDBAttackNearDarkElixirDrill, $GUI_CHECKED)
+ 		GUICtrlSetState($chkAttackTH, $GUI_UNCHECKED)
+ 		chkDBSmartAttackRedArea()
+ 	EndIf
 EndFunc   ;==>chkDBAttackOption
 
 Func chkABSmartAttackRedArea()
