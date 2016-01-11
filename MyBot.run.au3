@@ -142,7 +142,7 @@ Func runBot() ;Bot that runs everything in order
 		checkMainScreen()
 		If $Restart = True Then ContinueLoop
 
-		If $Is_ClientSyncError = False and $Is_SearchLimit=false Then
+		If $Is_ClientSyncError = False and $Is_SearchLimit=false and $iSnipeSprintCount = 0 Then
 			If BotCommand() Then btnStop()
 			If _Sleep($iDelayRunBot2) Then Return
 			checkMainScreen(False)
@@ -339,6 +339,10 @@ Func runBot() ;Bot that runs everything in order
 			SaveStatChkTownHall()
 			SaveStatChkDeadBase()
 			If $CommandStop <> 0 And $CommandStop <> 3 Then
+				if $iSnipeSprint > 0 And $OptTrophyMode = 1 Then
+					SetLog("Beginning snipe sprint")
+					$iSnipeSprintCount = 5 * $iSnipeSprint
+				EndIf
 				AttackMain()
 				If $OutOfGold = 1 Then
 					Setlog("Switching to Halt Attack, Stay Online/Collect mode ...", $COLOR_RED)
@@ -353,10 +357,16 @@ Func runBot() ;Bot that runs everything in order
 
 		Else ;When error occours directly goes to attack
 			If $Is_SearchLimit = False Then
-				SetLog("Restarted after Out of Sync Error: Attack Now", $COLOR_RED)
-;				$iNbrOfOoS += 1
-;				UpdateStats()
-;				PushMsg("OutOfSync")
+			If $iSnipeSprintCount>0 Then
+					UpdateStats()
+					SETLOG("Snipe sprints remaining: "& $iSnipeSprintCount)
+					$iSnipeSprintCount = $iSnipeSprintCount - 1
+				Else
+					SetLog("Restarted after Out of Sync Error: Attack Now", $COLOR_RED)
+;				    $iNbrOfOoS += 1
+;				    UpdateStats()
+;				    PushMsg("OutOfSync")
+				EndIf
 			Else
 				If $debugsetlog = 1 Then Setlog("return from searchLimit, restart searches (" & $CurCamp & "/" & $TotalCamp &")",$COLOR_PURPLE)
 				;OPEN ARMY OVERVIEW WITH NEW BUTTON

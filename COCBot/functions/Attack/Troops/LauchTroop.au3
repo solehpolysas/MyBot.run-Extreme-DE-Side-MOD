@@ -33,7 +33,7 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
 
 	If $debugSetlog =1 Then SetLog("LaunchTroop2 with CC " & $CC & ", K " & $King & ", Q " & $Queen & ", W " & $Warden , $COLOR_PURPLE)
 
-	If ($iChkRedArea[$iMatchMode]) And $iChkDeploySettings[$iMatchMode] < 4 Then
+	If ($iChkRedArea[$iMatchMode]) And $iChkDeploySettings[$iMatchMode] < $eFourFinger Then
 		For $i = 0 To UBound($listInfoDeploy) - 1
 			$troopKind = $listInfoDeploy[$i][0]
 			$nbSides = $listInfoDeploy[$i][1]
