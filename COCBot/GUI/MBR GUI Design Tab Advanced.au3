@@ -31,7 +31,7 @@
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$cmbAttackNowDelay = GUICtrlCreateCombo("", $x + 20, $y + 1, 35, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetData(-1, "5|4|3|2|0","3") ; default value 3
+			GUICtrlSetData(-1, "5|4|3|2|1|0","3") ; default value 3
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$lblAttackNowSec = GUICtrlCreateLabel(GetTranslated(4,9, "sec. delay"), $x + 57, $y + 4, -1, -1)
 			GUICtrlSetTip(-1, $txtTip)
@@ -236,7 +236,7 @@
 			GUICtrlSetLimit(-1, 2)
 			;GUICtrlSetState(-1, $GUI_DISABLE)
 
-		$lblSWTTiles = GUICtrlCreateLabel(GetTranslated(99,16, "Add Tiles") & ":", $x - 90, $y + 25, 100, -1, $SS_RIGHT)
+		$lblSWTTiles = GUICtrlCreateLabel(GetTranslated(99,16, "Tiles") & ":", $x - 90, $y + 25, 100, -1, $SS_RIGHT)
 			$txtTip = GetTranslated(4,17, "Add number of tiles from Base Edges")
 			GUICtrlSetTip(-1, $txtTip)
 			;GUICtrlSetState(-1, $GUI_DISABLE)
@@ -248,7 +248,7 @@
 			$txtTip = GetTranslated(4,19, "Maximum searches first to return to home.")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
-		$txtSearchlimit = GUICtrlCreateInput("15", $x + 170, $y+25, 25, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+		$txtSearchlimit = GUICtrlCreateInput("15", $x + 98, $y+25, 25, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 2)
 			GUICtrlSetState(-1, $GUI_DISABLE)
