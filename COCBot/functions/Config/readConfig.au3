@@ -656,6 +656,11 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ichkSWTGreedy	= IniRead($config, "Greedy", "chkSWTGreedy", "0")
 		;Greedy Mod Bottom
 
+		;Noyax TH Percent Top
+		$iOptAttIfDB = IniRead($config, "advanced", "THsnAttIfDB", "1")
+		$iPercentThsn = IniRead($config, "advanced", "THsnPercent", "10")
+		;Noyax TH Percent Bottom
+
 ;Profile Switch
 		$ichkGoldSwitchMax = IniRead($config, "profiles", "chkGoldSwitchMax", "0")
 		$icmbGoldMaxProfile = IniRead($config, "profiles", "cmbGoldMaxProfile", "0")

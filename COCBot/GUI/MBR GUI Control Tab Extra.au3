@@ -16,27 +16,27 @@
 ;MBR GUI_EXTRA CONTROLS
 ; ===============================================================================================================================
 
-Func chkSWTGreedy()
-	If GUICtrlRead($ChkSnipeWhileTrain) = $GUI_CHECKED Then
-		$iChkSnipeWhileTrain = 1
-		GUICtrlSetState($chkSWTGreedy, $GUI_ENABLE)
-	Else
-		$iChkSnipeWhileTrain = 0
-		GUICtrlSetState($chkSWTGreedy, $GUI_DISABLE)
-	EndIf
-	GUICtrlSetState($ChkSnipeWhileTrain, $GUI_ENABLE)
+;Func chkSWTGreedy()
+;	If GUICtrlRead($ChkSnipeWhileTrain) = $GUI_CHECKED Then
+;		$iChkSnipeWhileTrain = 1
+;		GUICtrlSetState($chkSWTGreedy, $GUI_ENABLE)
+;	Else
+;		$iChkSnipeWhileTrain = 0
+;		GUICtrlSetState($chkSWTGreedy, $GUI_DISABLE)
+;	EndIf
+;	GUICtrlSetState($ChkSnipeWhileTrain, $GUI_ENABLE)
+;
+;EndFunc   ;==>chkSWTGreedy
 
-EndFunc   ;==>chkSWTGreedy
-
-Func chkGreedy()
-	If GUICtrlRead($chkTrophyMode) = $GUI_CHECKED Then
-		$OptTrophyMode = 1
-		GUICtrlSetState($chkGreedy, $GUI_ENABLE)
-	Else
-		$OptTrophyMode = 0
-		GUICtrlSetState($chkGreedy, $GUI_DISABLE)
-	EndIf
-EndFunc   ;==>chkSWTGreedy
+;Func chkGreedy()
+;	If GUICtrlRead($chkTrophyMode) = $GUI_CHECKED Then
+;		$OptTrophyMode = 1
+;		GUICtrlSetState($chkGreedy, $GUI_ENABLE)
+;	Else
+;		$OptTrophyMode = 0
+;		GUICtrlSetState($chkGreedy, $GUI_DISABLE)
+;	EndIf
+;EndFunc   ;==>chkSWTGreedy
 
 Func chkSkipActive()
 	If GUICtrlRead($chkSkipActive) = $GUI_CHECKED Then

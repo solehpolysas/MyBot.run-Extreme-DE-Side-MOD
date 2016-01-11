@@ -462,12 +462,13 @@ EndFunc   ;==>CheckOneStar
 
 Func Greedy()
 
-	If $isSnipeWhileTrain = True And $greedOneTime <> 1 And $ichkSWTGreedy = 1 Then
+;	If $isSnipeWhileTrain = True And $greedOneTime <> 1 And $ichkSWTGreedy = 1 Then
+	If $isSnipeWhileTrain = True And $ichkSWTGreedy = 1 Then
 		SetLog("Greedy mode: Activated")
 		If checkDeadBase() Then
 			SetLog("Greedy mode: Attacking...")
 			$iMatchMode = $DB
-			$greedOneTime = True ; reset back to zero in mybot.run.au3 @ top Func runBot()
+;			$greedOneTime = 1 ; reset back to zero in mybot.run.au3 @ top Func runBot()
 			PrepareAttack($iMatchMode)
 			If $Restart = True Then Return
 			Attack()
@@ -477,12 +478,13 @@ Func Greedy()
 			SetLog("Greedy mode: Not a Dead Village")
 		EndIf
 	Else
-		If $greedOneTime <> 1 And $ichkGreedy = 1 And $isSnipeWhileTrain = False Then
+;		If $greedOneTime <> 1 And $ichkGreedy = 1 And $isSnipeWhileTrain = False Then
+		If $ichkGreedy = 1 And $isSnipeWhileTrain = False Then
 			SetLog("Greedy mode: Activated")
 			If checkDeadBase() Then
 				SetLog("Greedy mode: Attacking...")
 				$iMatchMode = $DB
-				$greedOneTime = True ; reset back to zero in mybot.run.au3 @ top Func runBot()
+;				$greedOneTime = 1 ; reset back to zero in mybot.run.au3 @ top Func runBot()
 				PrepareAttack($iMatchMode)
 				If $Restart = True Then Return
 				Attack()

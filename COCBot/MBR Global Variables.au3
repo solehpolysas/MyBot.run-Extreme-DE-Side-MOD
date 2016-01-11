@@ -328,6 +328,10 @@ Global $ichkUseHSpellsTH = 0
 Global $THusedKing = 0
 Global $THusedQueen = 0
 Global $THusedWarden = 0
+Global $TestLoots = False ;Noyax
+Global $iOptAttIfDB = 1 ; Noyax attack when TH Snipe found DB
+Global $iPercentThsn = 10 ; Noyax % loots to considere dead base in TH Snipe
+
 
 Global $ichkSmartLightSpell
 global $ichkTrainLightSpell
