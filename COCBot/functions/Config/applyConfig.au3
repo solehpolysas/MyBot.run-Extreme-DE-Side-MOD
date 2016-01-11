@@ -1560,6 +1560,16 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	EndIf
 	;Greedy Mode Bottom
 
+;noyax TH Percent top
+	If $iOptAttIfDB = 1 Then
+		GUICtrlSetState($chkAttIfDB, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkAttIfDB, $GUI_UNCHECKED)
+	EndIf
+	GUICtrlSetData($txtAttIfDB, $iPercentThsn)
+;noyax TH Percent bottom
+
+
 	;multilanguage
 	LoadLanguagesComboBox() ; recreate combo box values
 	_GUICtrlComboBox_SetCurSel($cmbLanguage, _GUICtrlComboBox_FindStringExact($cmbLanguage, $sLanguage))

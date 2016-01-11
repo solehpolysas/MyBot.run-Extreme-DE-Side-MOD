@@ -1,24 +1,24 @@
 TROOP |S1|S2|Q1|Q2|DEL1 |DEL2 |LOG_TEXT                              |NOTES,
 Text  |  |  |  |  |     |     |Sniping TH with Smartsaving Goblin    |,
-Gobl  | 2| 2| 5| 5|  500|  600|                                      |deploys 10 goblins,
+Gobl  | 1| 1| 5| 5|  500|  600|                                      |deploys 10 goblins,
 Barb  | 1| 1| 5| 5|  500|  600|                                      |deploys 5 barbarians
-Arch  | 1| 1| 5| 5|  500|  600|                                      |deploys 5 archers
+Arch  | 2| 2| 5| 5|  500|  600|                                      |deploys 5 archers
 Text  |  |  |  |  |     |     |Wait for 20 Second                    |,
-WAIT  |  |  |  |  |     |20000|                                      |,
+WAIT  |  |  |  |  |     |25000|                                      |,
 Text  |  |  |  |  |     |     |TH Not Destroy??                      |,
 Text  |  |  |  |  |     |     |We Try Again                          |,
-Gobl  | 2| 2| 5| 5|  500|  600|                                      |deploys 10 goblins,
-Barb  | 1| 1| 5| 5|  500|  600|                                      |deploys 5 barbarians
-Arch  | 2| 2| 5| 5|  500|  600|                                      |deploys 10 archers
+Gobl  | 1| 1| 5| 5|  500|  600|                                      |deploys 10 goblins,
+Barb  | 2| 2| 5| 5|  500|  600|                                      |deploys 5 barbarians
+Arch  | 2| 3| 5| 5|  500|  600|                                      |deploys 10 archers
 Text  |  |  |  |  |     |     |Wait for 10 Second                    |,
-WAIT  |  |  |  |  |     |10000|                                      |,
+WAIT  |  |  |  |  |     |15000|                                      |,
 Text  |  |  |  |  |     |     |TH Not Destroy??                      |,
 Text  |  |  |  |  |     |     |We Try Again                          |,
-Gobl  | 2| 2| 5| 5|  500|  600|                                      |deploys 10 goblins,
-Barb  | 1| 1| 5| 5|  500|  600|                                      |deploys 5 barbarians
-Arch  | 2| 2| 5| 5|  500|  600|                                      |deploys 10 archers
+Gobl  | 1| 1| 5| 5|  500|  600|                                      |deploys 10 goblins,
+Barb  | 3| 3| 5| 5|  500|  600|                                      |deploys 5 barbarians
+Arch  | 3| 4| 5| 5|  500|  600|                                      |deploys 10 archers
 Text  |  |  |  |  |     |     |Wait for 10 Second                    |,
-WAIT  |  |  |  |  |     |10000|                                      |,
+WAIT  |  |  |  |  |     |15000|                                      |,
 Text  |  |  |  |  |     |     |Still Not Destroy?                    |,
 Text  |  |  |  |  |     |     |Owh, Maybe it's trapped               |,
 Text  |  |  |  |  |     |     |Lets Surrender                        |,

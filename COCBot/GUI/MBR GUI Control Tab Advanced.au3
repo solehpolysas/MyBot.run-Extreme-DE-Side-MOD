@@ -59,6 +59,7 @@ Func chkSnipeWhileTrain()
 		GUICtrlSetState($txtminArmyCapacityTHSnipe, $GUI_ENABLE)
 		GUICtrlSetState($lblSWTTiles, $GUI_ENABLE)
 		GUICtrlSetState($txtSWTTiles, $GUI_ENABLE)
+		GUICtrlSetState($chkSWTGreedy, $GUI_ENABLE)
 	Else
 		$iChkSnipeWhileTrain = 0
 		GUICtrlSetState($lblSearchlimit, $GUI_DISABLE)
@@ -67,6 +68,7 @@ Func chkSnipeWhileTrain()
 		GUICtrlSetState($txtminArmyCapacityTHSnipe, $GUI_DISABLE)
 		GUICtrlSetState($lblSWTTiles, $GUI_DISABLE)
 		GUICtrlSetState($txtSWTTiles, $GUI_DISABLE)
+		GUICtrlSetState($chkSWTGreedy, $GUI_DISABLE)
 	EndIf
 	GUICtrlSetState($ChkSnipeWhileTrain, $GUI_ENABLE)
 
@@ -129,6 +131,9 @@ Func chkSnipeMode()
 		GUICtrlSetState($chkTSMeetDE, $GUI_ENABLE)
 		GUICtrlSetState($lblTsSearchMode, $GUI_ENABLE)
 		GUICtrlSetState($cmbTsSearchMode, $GUI_ENABLE)
+		GUICtrlSetState($chkAttIfDB, $GUI_ENABLE)
+		GUICtrlSetState($txtAttIfDB, $GUI_ENABLE)
+		GUICtrlSetState($chkGreedy, $GUI_ENABLE)
 	Else
 		$OptTrophyMode = 0
 		GUICtrlSetState($txtTHaddtiles, $GUI_DISABLE)
@@ -153,6 +158,9 @@ Func chkSnipeMode()
 		GUICtrlSetState($chkTSMeetDE, $GUI_DISABLE)
 		GUICtrlSetState($lblTsSearchMode, $GUI_DISABLE)
 		GUICtrlSetState($cmbTsSearchMode, $GUI_DISABLE)
+		GUICtrlSetState($chkAttIfDB, $GUI_DISABLE)
+		GUICtrlSetState($txtAttIfDB, $GUI_DISABLE)
+		GUICtrlSetState($chkGreedy, $GUI_DISABLE)
 	EndIf
 EndFunc   ;==>chkSnipeMode
 

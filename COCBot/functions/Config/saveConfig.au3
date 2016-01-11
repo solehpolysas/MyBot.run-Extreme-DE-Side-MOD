@@ -1460,6 +1460,15 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 		;Greedy Mode Bottom
 
+;noyax TH Percent Top
+	If GUICtrlRead($chkAttIfDB) = $GUI_CHECKED Then
+		IniWrite($config, "advanced", "THsnAttIfDB", 1)
+	Else
+		IniWrite($config, "advanced", "THsnAttIfDB", 0)
+	EndIf
+	IniWrite($config, "advanced", "THsnPercent", GUICtrlRead($txtAttIfDB))
+;noyax TH Percent bottom
+
 	;Multilanguage
 
 	IniWrite($config, "other", "language", $sLanguage)

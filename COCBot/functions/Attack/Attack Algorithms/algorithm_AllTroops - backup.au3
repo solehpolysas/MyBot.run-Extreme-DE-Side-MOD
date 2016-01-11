@@ -29,6 +29,16 @@ Func getHeroes() ;Get information about your heroes
         SetLog("Use Warden SLOT n° " & $Warden, $COLOR_PURPLE)
         SetLog("Use CC SLOT n° " & $CC, $COLOR_PURPLE)
     EndIf
+;Edit by Rizor
+    If _Sleep($iDelayalgorithm_AllTroops1) Then Return
+
+        If $iMatchMode = $TS Then
+            Local $SaveSetting = 1
+            $iMatchMode = $DB
+        Else
+            Local $SaveSetting = 0
+        EndIf
+;Edit by Rizor
 
 EndFunc
 
@@ -58,6 +68,13 @@ EndFunc
 Func useTownHallSnipe() ;End battle after a town hall snipe
 
 	SwitchAttackTHType()
+
+;Edit by Rizor
+       If $SaveSetting = 1 Then
+            Local $SaveSetting = 0
+            $iMatchMode = $TS
+		EndIf
+;Edit by Rizor
 
     If $zoomedin = True Then
         ZoomOut()

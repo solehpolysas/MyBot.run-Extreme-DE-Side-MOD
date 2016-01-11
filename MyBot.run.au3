@@ -134,7 +134,7 @@ WEnd
 Func runBot() ;Bot that runs everything in order
 	$TotalTrainedTroops = 0
 	While 1
-		$greedOneTime = 0
+;		$greedOneTime = 0
 		$Restart = False
 		$fullArmy = False
 		$CommandStop = -1
@@ -172,81 +172,37 @@ Func runBot() ;Bot that runs everything in order
 				ContinueLoop ; Restart bot loop to reset $CommandStop
 			EndIf
 
-;			If _Sleep($iDelayRunBot5) Then Return
-;			checkMainScreen(False)
+
+
+			If _Sleep($iDelayRunBot5) Then Return ;change delay from 5 to 1
+			checkMainScreen(False)
+			If $Restart = True Then ContinueLoop
+
+			Train()
+			If _Sleep($iDelayRunBot1) Then Return
+			checkMainScreen(False)
+			If $Restart = True Then ContinueLoop
+
+;			Collect()
+;			If _Sleep($iDelayRunBot1) Then Return
 ;			If $Restart = True Then ContinueLoop
-			If $ichkSkipActive = 1 And $CurCamp >= ($TotalCamp * $itxtSkipHowMuch / 100) Then
-				If $ichkSkipCollect = 1 Then
-					Setlog("Skipping Collect Resources")
-				Else
-					Collect()
-					If _Sleep($iDelayRunBot1) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
+;			CheckTombs()
+;			If _Sleep($iDelayRunBot3) Then Return
+;			If $Restart = True Then ContinueLoop
+;			ReArm()
+;			If _Sleep($iDelayRunBot3) Then Return
+;			If $Restart = True Then ContinueLoop
 
-				If $ichkSkipTombstones = 1 Then
-					Setlog("Skipping Clear Tombstones")
-				Else
-					CheckTombs()
-					If _Sleep($iDelayRunBot3) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
+			ReplayShare($iShareAttackNow)
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
+			ReportPushBullet()
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
 
-				If $ichkSkipRearm = 1 Then
-					Setlog("Skipping ReArming Village")
-				Else
-					ReArm()
-					If _Sleep($iDelayRunBot3) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
-
-				If $ichkSkipLab = 1 Then
-					Setlog("Skipping Laboratory Upgrades")
-				Else
-					Laboratory()
-					If _Sleep($iDelayRunBot3) Then Return
-					checkMainScreen(False) ; required here due to many possible exits
-					If $Restart = True Then ContinueLoop
-				EndIf
-
-				If $ichkSkipBuilding = 1 Then
-					Setlog("Skipping Building Upgrades")
-				Else
-					UpgradeBuilding()
-					If _Sleep($iDelayRunBot3) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
-
-				If $ichkSkipWall = 0 Then
-					Setlog("Skipping Upgrade Walls")
-				Else
-					UpgradeWall()
-					If _Sleep($iDelayRunBot3) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
-			Else
-
-				Collect()
-				If _Sleep($iDelayRunBot1) Then Return
-				If $Restart = True Then ContinueLoop
-				CheckTombs()
-				If _Sleep($iDelayRunBot3) Then Return
-				If $Restart = True Then ContinueLoop
-				ReArm()
-				If _Sleep($iDelayRunBot3) Then Return
-				If $Restart = True Then ContinueLoop
-				Laboratory()
-				If _Sleep($iDelayRunBot3) Then Return
-				checkMainScreen(False) ; required here due to many possible exits
-				If $Restart = True Then ContinueLoop
-				UpgradeBuilding()
-				If _Sleep($iDelayRunBot3) Then Return
-				If $Restart = True Then ContinueLoop
-				UpgradeWall()
-				If _Sleep($iDelayRunBot3) Then Return
-				If $Restart = True Then ContinueLoop
-				EndIf
-			EndIf
+;			DonateCC()
+;			If _Sleep($iDelayRunBot3) Then Return
+;			If $Restart = True Then ContinueLoop
 
 			If $ichkSkipActive = 1 And $CurCamp >= ($TotalCamp * $itxtSkipHowMuch / 100) And $ichkSkipDonate = 1 Then
 
@@ -267,10 +223,14 @@ Func runBot() ;Bot that runs everything in order
 				EndIf
 			EndIf
 
-			If _Sleep($iDelayRunBot1) Then Return
-			checkMainScreen(False) ; required here due to many possible exits
-			If $Restart = True Then ContinueLoop
-			Train()
+			If $ichkTrainLightSpell = 1 Then
+                DrillZapSpell() ; Drill Zap
+            EndIf
+
+;			If _Sleep($iDelayRunBot1) Then Return
+;			checkMainScreen(False) ; required here due to many possible exits
+;			If $Restart = True Then ContinueLoop
+;			Train()
 			If _Sleep($iDelayRunBot1) Then Return
 			checkMainScreen(False)
 			If $Restart = True Then ContinueLoop
@@ -294,32 +254,85 @@ Func runBot() ;Bot that runs everything in order
 				If Unbreakable() = True Then ContinueLoop
 			EndIf
 
-			ReplayShare($iShareAttackNow)
-			If _Sleep($iDelayRunBot3) Then Return
-			If $Restart = True Then ContinueLoop
-			ReportPushBullet()
-			If _Sleep($iDelayRunBot3) Then Return
-			If $Restart = True Then ContinueLoop
-			DonateCC()
-			If _Sleep($iDelayRunBot3) Then Return
-			If $Restart = True Then ContinueLoop
-			If $ichkTrainLightSpell = 1 Then
-                DrillZapSpell() ; Drill Zap
 
-;			Laboratory()
-;			If _Sleep($iDelayRunBot3) Then Return
-;			checkMainScreen(False) ; required here due to many possible exits
-;			If $Restart = True Then ContinueLoop
-			UpgradeHeroes()
-			If _Sleep($iDelayRunBot3) Then Return
-			If $Restart = True Then ContinueLoop
-;			UpgradeBuilding()
-;			If _Sleep($iDelayRunBot3) Then Return
-;			If $Restart = True Then ContinueLoop
-;			UpgradeWall()
-;			If _Sleep($iDelayRunBot3) Then Return
-;			If $Restart = True Then ContinueLoop
-			PushMsg("CheckBuilderIdle")
+
+
+			If $ichkSkipActive = 1 And $CurCamp >= ($TotalCamp * $itxtSkipHowMuch / 100) Then
+				If $ichkSkipCollect = 1 Then
+					Setlog("Skipping Collect Resources")
+				Else
+					Collect()
+					If _Sleep($iDelayRunBot1) Then Return
+					If $Restart = True Then ContinueLoop
+				EndIf
+
+				If $ichkSkipTombstones = 1 Then
+					Setlog("Skipping Clear Tombstones")
+				Else
+					CheckTombs()
+					If _Sleep($iDelayRunBot3) Then Return
+					If $Restart = True Then ContinueLoop
+				EndIf
+
+				If $ichkSkipRearm = 1 Then
+					Setlog("Skipping ReArming Village")
+				Else
+					ReArm()
+					If _Sleep($iDelayRunBot5) Then Return
+					If $Restart = True Then ContinueLoop
+				EndIf
+
+				If $ichkSkipLab = 1 Then
+					Setlog("Skipping Laboratory Upgrades")
+				Else
+					Laboratory()
+					If _Sleep($iDelayRunBot3) Then Return
+					checkMainScreen(False) ; required here due to many possible exits
+					If $Restart = True Then ContinueLoop
+				EndIf
+
+				If $ichkSkipBuilding = 1 Then
+					Setlog("Skipping Building Upgrades")
+				Else
+					UpgradeBuilding()
+					If _Sleep($iDelayRunBot3) Then Return
+					If $Restart = True Then ContinueLoop
+				EndIf
+
+				If $ichkSkipWall = 1 Then
+					Setlog("Skipping Upgrade Walls")
+				Else
+					UpgradeWall()
+					If _Sleep($iDelayRunBot3) Then Return
+					If $Restart = True Then ContinueLoop
+				EndIf
+			Else
+
+				Collect()
+				If _Sleep($iDelayRunBot1) Then Return
+				If $Restart = True Then ContinueLoop
+				CheckTombs()
+				If _Sleep($iDelayRunBot3) Then Return
+				If $Restart = True Then ContinueLoop
+				ReArm()
+				If _Sleep($iDelayRunBot5) Then Return
+				If $Restart = True Then ContinueLoop
+				Laboratory()
+				If _Sleep($iDelayRunBot3) Then Return
+				checkMainScreen(False) ; required here due to many possible exits
+				If $Restart = True Then ContinueLoop
+				UpgradeBuilding()
+				If _Sleep($iDelayRunBot3) Then Return
+				If $Restart = True Then ContinueLoop
+				UpgradeWall()
+				If _Sleep($iDelayRunBot3) Then Return
+				If $Restart = True Then ContinueLoop
+
+				UpgradeHeroes()
+				If _Sleep($iDelayRunBot3) Then Return
+				If $Restart = True Then ContinueLoop
+				PushMsg("CheckBuilderIdle")
+			EndIf
 			Idle()
 			If _Sleep($iDelayRunBot3) Then Return
 			If $Restart = True Then ContinueLoop
