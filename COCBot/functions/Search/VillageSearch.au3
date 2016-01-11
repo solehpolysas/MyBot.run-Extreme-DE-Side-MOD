@@ -98,7 +98,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 		If $chkATH = 1 Then $chkATHText = " Attack TH Outside "
 		If $OptTrophyMode = 1 Then $OptTrophyModeText = "THSnipe Combo for " & GUICtrlRead($cmbTsSearchMode)
-		If ($OptTrophyMode = 1 Or $chkATH = 1) And Not ($Is_SearchLimit) Then SetLog($OptTrophyModeText &" "& $chkATHText & " " & $txtAttackTHType)
+		If ($OptTrophyMode = 1 Or $chkATH = 1) And Not ($Is_SearchLimit) Then SetLog($OptTrophyModeText & $chkATHText & $txtAttackTHType)
 	EndIf
 
 	If Not ($Is_SearchLimit) Then

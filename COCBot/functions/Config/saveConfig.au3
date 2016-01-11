@@ -449,18 +449,7 @@ Func saveConfig() ;Saves the controls settings to the config
        IniWrite($config, "options", "chkDrillZapTH", "0")
     EndIf
 
-	;save troops option
-	If GUICtrlRead($chkChangeFF) = $GUI_CHECKED Then
-		IniWrite($config, "options", "ChkSTFFBarch", 1)
-	Else
-		IniWrite($config, "options", "ChkSTFFBarch", 0)
-	EndIf
-
-	IniWrite($config, "options", "txtTHpercentCollectors", GUICtrlRead($txtTHpercentCollectors))
-
-
     For $i = 1 to 24
-	   txtDeStyle($i)
 	   If GUICtrlRead(Eval("cmbDeDeploy" & StringRight("0" & $i,2))) <> $DeDeployEmptyString Then
 	      IniWrite($config, "options", "DeDeployType" & $i,_GUICtrlComboBox_GetCurSel(Eval("cmbDeDeploy" & StringRight("0" & $i,2)))-1)
 	   Else
@@ -469,7 +458,6 @@ Func saveConfig() ;Saves the controls settings to the config
 	   IniWrite($config, "options", "DeDeployPosition" & $i,GUICtrlRead(Eval("txtDeStyle" & StringRight("0" & $i,2))))
     Next
 
-	IniWrite($config, "options", "cmbSniperTroop", _GUICtrlComboBox_GetCurSel($cmbSniperTroop) + 1)
 	;End Battle Settings------------------------------------------------------------------------
 	IniWrite($config, "endbattle", "txtTimeStopAtk", GUICtrlRead($txtTimeStopAtk))
 	IniWrite($config, "endbattle", "chkTimeStopAtk", GUICtrlRead($chkTimeStopAtk))
@@ -664,7 +652,6 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "advanced", "TSsearchGoldPlusElixir", GUICtrlRead($txtTSMinGoldPlusElixir))
 	IniWrite($config, "advanced", "TSsearchDark", GUICtrlRead($txtTSMinDarkElixir))
 
-    IniWrite($config, "advanced", "cmbSnipeSprint", _GUICtrlComboBox_GetCurSel($cmbSnipeSprint))
 	;atk their king
 	;attk their queen
 
@@ -1399,8 +1386,88 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 	IniWrite($config, "SnipeWhileTrain", "txtSearchlimit", GUICtrlRead($txtSearchlimit))
 	IniWrite($config, "SnipeWhileTrain", "txtminArmyCapacityTHSnipe", GUICtrlRead($txtminArmyCapacityTHSnipe))
-	IniWrite($config, "SnipeWhileTrain", "txtmaxArmyCapacityTHSnipe", GUICtrlRead($txtmaxArmyCapacityTHSnipe))
 	IniWrite($config, "SnipeWhileTrain", "SWTtiles", GUICtrlRead($txtSWTTiles))
+
+;Skip Function When Camp x% full top
+	If GUICtrlRead($chkSkipActive) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipActive", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipActive", 0)
+	EndIf
+
+	IniWrite($config, "Skip", "Percent", GUICtrlRead($txtSkipHowMuch))
+
+
+	If GUICtrlRead($chkSkipCollect) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipCollect", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipCollect", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipTombstones) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipTombstones", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipTombstones", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipRearm) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipRearm", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipRearm", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipLab) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipLab", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipLab", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipWall) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipWall", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipWall", 0)
+	EndIf
+
+	If GUICtrlRead($chkSkipBuilding) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipBuilding", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipBuilding", 0)
+	EndIf
+
+
+	If GUICtrlRead($chkSkipDonate) = $GUI_CHECKED Then
+		IniWrite($config, "Skip", "chkSkipDonate", 1)
+	Else
+		IniWrite($config, "Skip", "chkSkipDonate", 0)
+	EndIf
+;Skip Function When Camp x% full top
+
+		;Greedy Mode Top
+	If GUICtrlRead($chkGreedy) = $GUI_CHECKED Then
+		IniWrite($config, "Greedy", "chkGreedy", 1)
+	Else
+		IniWrite($config, "Greedy", "chkGreedy", 0)
+	EndIf
+
+	If GUICtrlRead($chkSWTGreedy) = $GUI_CHECKED Then
+		IniWrite($config, "Greedy", "chkSWTGreedy", 1)
+	Else
+		IniWrite($config, "Greedy", "chkSWTGreedy", 0)
+	EndIf
+		;Greedy Mode Bottom
+
+;noyax TH Percent Top
+	If GUICtrlRead($chkAttIfDB) = $GUI_CHECKED Then
+		IniWrite($config, "advanced", "THsnAttIfDB", 1)
+	Else
+		IniWrite($config, "advanced", "THsnAttIfDB", 0)
+	EndIf
+	IniWrite($config, "advanced", "THsnPercent", GUICtrlRead($txtAttIfDB))
+;noyax TH Percent bottom
 
 	;Multilanguage
 

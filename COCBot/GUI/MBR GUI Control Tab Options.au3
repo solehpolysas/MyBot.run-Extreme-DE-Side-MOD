@@ -207,24 +207,7 @@ Func cmbDeDeploy($troopSlot)
 EndFunc   ;==>cmbDeDeploy
 
 Func txtDeStyle($troopSlot)
-	local $inputValue = StringUpper(GUICtrlRead(@GUI_CtrlId))
-	IF StringRight($inputValue,1) = "R" OR StringRight($inputValue,1) = "L" Then
-		If $DeDeployType[$troopSlot - 1] = $DeDeployEmptyString Then
-			$DeDeployPosition[$troopSlot - 1] = String(number($inputValue))
-		ElseIf 	Number($DeDeployType[$troopSlot - 1])  >= 20 Then
-			if StringLen($inputValue) > 1 Then
-				$DeDeployPosition[$troopSlot - 1] = String(number(StringLeft($inputValue,StringLen($inputValue)-1))) & StringRight($inputValue,1)
-			Else
-				$DeDeployPosition[$troopSlot - 1] = $inputValue
-			EndIf
-		Else
-			$DeDeployPosition[$troopSlot - 1] = StringRight($inputValue,1)
-		EndIf
-	Else
-		$DeDeployPosition[$troopSlot - 1] = String(number($inputValue))
-	EndIf
-	GUICtrlSetData( @GUI_CtrlId, $DeDeployPosition[$troopSlot - 1])
-    ;$DeDeployPosition[$troopSlot - 1] = GUICtrlRead(@GUI_CtrlId)
+   $DeDeployPosition[$troopSlot - 1] = GUICtrlRead(@GUI_CtrlId)
 EndFunc   ;==>cmbDeDeploy
 
 Func TroopNumberToEnum($TroopEnumValue)
@@ -470,8 +453,3 @@ EndFunc ;==> txtAPIKey
 EndIf
 IniWrite($config, "Stats", "chkCoCStats",$ichkCoCStats)
 EndFunc ;==> chkCoCStats
-
-Func cmbSniperTroop()
-	$iSniperTroop = _GUICtrlComboBox_GetCurSel($cmbSniperTroop)
-	setlog("$iSniperTroop = " & $iSniperTroop)
-EndFunc

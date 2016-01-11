@@ -26,13 +26,7 @@ Func SnipeWhileTrain()
 			Return False
 		EndIf
 
-		; Attempt only when $imaxArmyCapacityTHSnipe % army full to prevent failure of TH snipe
-		If ($CurCamp >= ($TotalCamp * $itxtmaxArmyCapacityTHSnipe / 100)) Then
-			SetLog("army Capacity above " & $itxtmaxArmyCapacityTHSnipe & "%, too high for Snipe While Train")
-			Return False
-		EndIf
-
-		If $fullArmy = False And ($CurCamp /$TotalCamp >=  ($itxtminArmyCapacityTHSnipe / 100)) And ($CurCamp /$TotalCamp <=  ($itxtmaxArmyCapacityTHSnipe / 100) )  = True Then
+		If $fullArmy = False And ($CurCamp /$TotalCamp >=  ($itxtminArmyCapacityTHSnipe / 100) )  = True Then
 
 			; Swap variables to pure TH snipe mode
 			$tempSnipeWhileTrain[0] = $iChkMeetTrophy[$DB]
