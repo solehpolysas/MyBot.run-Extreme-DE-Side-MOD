@@ -14,6 +14,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func PrepareAttack($pMatchMode, $Remaining = False) ;Assigns troops
+	local $iSnipeSprintTroopCount
     $lastDarkSpell = -1
     If $debugSetlog = 1 Then SetLog("PrepareAttack",$COLOR_PURPLE)
     If $Remaining Then
@@ -118,8 +119,14 @@ Func PrepareAttack($pMatchMode, $Remaining = False) ;Assigns troops
                 $atkTroops[$i][1] = $aTemp[$i][1]
             EndIf
             If $troopKind <> -1 Then SetLog("-*-" & NameOfTroop($atkTroops[$i][0]) & " " & $atkTroops[$i][1], $COLOR_GREEN)
+			$iSnipeSprintTroopCount = $iSnipeSprintTroopCount + $atkTroops[$i][1]
         EndIf
     Next
+	If $iSnipeSprint > 0 And $iSnipeSprintCount > 0 And $iSnipeSprintTroopCount<40 Then
+		SetLog("Too few troops to continue snipe sprint.")
+        $iSnipeSprintCount = 0
+		;$Restart = True
+	EndIf
     If $lastDarkSpell <> -1 Then
         If $debugSetlog = 1 Then Setlog("Looking for 2nd dark spell")
         If $debugSetlog = 1 Then SetLog("Lastdarkspell: "&$lastDarkSpell)
