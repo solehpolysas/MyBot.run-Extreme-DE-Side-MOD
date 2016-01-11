@@ -1,27 +1,4 @@
-Func LauchTroop($kind, $nbSides, $waveNb, $maxWaveNb, $slotsPerEdge = 0)
-	Local $troop = unitLocation($kind)
-	Local $troopNb = Ceiling(unitCount($kind) / $maxWaveNb)
-	Local $name = getTranslatedTroopName($kind)
-
-	If ($troop = -1) Or ($troopNb = 0) Then ; Troop not trained or 0 units to deploy
-		;if $waveNb > 0 Then SetLog("Skipping wave of " & $name & " (" & $troopKind & ") : nothing to drop" )
-		Return False; nothing to do => skip this wave
-	EndIf
-
-	Local $waveName = "first"
-
-	If $waveNb = 2 Then $waveName = "second"
-	If $waveNb = 3 Then $waveName = "third"
-	If $maxWaveNb = 1 Then $waveName = "only"
-	If $waveNb = 0 Then $waveName = "last"
-
-	SetLog("Dropping " & $waveName & " wave of " & $troopNb & " " & $name, $COLOR_GREEN)
-	DropTroop($troop, $nbSides, $troopNb, $slotsPerEdge)
-
-	Return True
-EndFunc   ;==>LauchTroop
-
-Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
+Func LaunchFourFinger($listInfoDeploy, $CC, $King, $Queen, $Warden)
 	Local $listListInfoDeployTroopPixel[0]
 
 	Local $isCCDropped = False
@@ -31,7 +8,7 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
 	Local $troopNb = 0
 	Local $name = ""
 
-	If $debugSetlog =1 Then SetLog("LaunchTroop2 with CC " & $CC & ", K " & $King & ", Q " & $Queen & ", W " & $Warden , $COLOR_PURPLE)
+	If $debugSetlog =1 Then SetLog("Launch Four Finger with CC " & $CC & ", K " & $King & ", Q " & $Queen & ", W " & $Warden , $COLOR_PURPLE)
 
 	If ($iChkRedArea[$iMatchMode]) And $iChkDeploySettings[$iMatchMode] < $eFourFinger Then
 		For $i = 0 To UBound($listInfoDeploy) - 1
@@ -210,7 +187,7 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
 					dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, $Queen,$Warden)
 				EndIf
 			Else
-				If LauchTroop($listInfoDeploy[$i][0], $listInfoDeploy[$i][1], $listInfoDeploy[$i][2], $listInfoDeploy[$i][3], $listInfoDeploy[$i][4]) Then
+				If LaunchTroops($listInfoDeploy[$i][0], $listInfoDeploy[$i][1], $listInfoDeploy[$i][2], $listInfoDeploy[$i][3], $listInfoDeploy[$i][4]) Then
 					If _Sleep(SetSleep(1)) Then Return
 				EndIf
 			EndIf
@@ -218,4 +195,4 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
 
 	EndIf
 	Return True
-EndFunc   ;==>LaunchTroop2
+EndFunc   ;==>LaunchFourFinger

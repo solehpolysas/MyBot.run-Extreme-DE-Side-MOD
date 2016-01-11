@@ -309,8 +309,7 @@ Func Train()
 		If $debugSetlog = 1 Then SetLog("------- Calculating TOTAL of Units: Arch/Barbs/Gobl ------", $COLOR_PURPLE)
 
 		; Balance Archers ,Barbs and goblins
-		If $OptTrophyMode = 1 And $icmbTroopComp <> 8 Then
-
+		If $OptTrophyMode = 1 And $icmbTroopComp <> 8 And $iSniperTroop = 3 Then
 			For $i = 0 To UBound($TroopName) - 1
 				If Number(Eval($TroopName[$i] & "Comp")) <> 0 Then
 					If $TroopName[$i] = "Barb" Or $TroopName[$i] = "Arch" Or $TroopName[$i] = "Gobl" Then
@@ -329,12 +328,30 @@ Func Train()
 				EndIf
 			Next
 		Else
-			$CurGobl = ($TotalCamp - $anotherTroops) * Eval("GoblComp") / 100
-			$CurGobl = Round($CurGobl)
-			$CurBarb = ($TotalCamp - $anotherTroops) * Eval("BarbComp") / 100
-			$CurBarb = Round($CurBarb)
-			$CurArch = ($TotalCamp - $anotherTroops) * Eval("ArchComp") / 100
-			$CurArch = Round($CurArch)
+			If $OptTrophyMode = 1 And $icmbTroopComp <> 8 And $iSniperTroop = 0 Then
+				SetLog("Sniping with Barbarians, train first.")
+				$tooFewBarb = 1
+				$CurBarb = 0
+			Else
+				$CurBarb = ($TotalCamp - $anotherTroops) * Eval("BarbComp") / 100
+				$CurBarb = Round($CurBarb)
+			EndIf
+			If $OptTrophyMode = 1 And $icmbTroopComp <> 8 And $iSniperTroop = 1 Then
+				SetLog("Sniping with Archers, train first.")
+				$tooFewArch = 1
+				$CurArch = 0
+			Else
+				$CurArch = ($TotalCamp - $anotherTroops) * Eval("ArchComp") / 100
+				$CurArch = Round($CurArch)
+			EndIf
+			If $OptTrophyMode = 1 And $icmbTroopComp <> 8 And $iSniperTroop = 2 Then
+				SetLog("Sniping with Goblins, train first.")
+				$tooFewGobl = 1
+				$CurGobl = 0
+			Else
+				$CurGobl = ($TotalCamp - $anotherTroops) * Eval("GoblComp") / 100
+				$CurGobl = Round($CurGobl)
+			EndIf
 		EndIf
 
 		If $debugSetlog = 1 Then SetLog("Need to train GOBL:" & $CurGobl & " /BARB: " & $CurBarb & " /ARCH: " & $CurArch & " /Total Space: " & $CurBarb + $CurArch + $CurGobl + $anotherTroops & "/" & $TotalCamp, $COLOR_PURPLE)

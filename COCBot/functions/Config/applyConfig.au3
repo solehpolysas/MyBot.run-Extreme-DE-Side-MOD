@@ -588,6 +588,9 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtUnBrkMaxDark, $iUnBrkMaxDark)
 	chkUnbreakable()
 
+	_GUICtrlComboBox_SetCurSel($cmbTSMeetGE, $iCmbMeetGE[$TS])
+	cmbTSMeetGE()
+
 	_GUICtrlComboBox_SetCurSel($cmbTsSearchMode, $iCmbTsSearchMode)
 	If $iChkMeetOne[$TS] = 1 Then
 		GUICtrlSetState($chkTsMeetOne, $GUI_CHECKED)
@@ -607,6 +610,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtTSMinGoldPlusElixir, $iMinGoldPlusElixir[$TS])
 	GUICtrlSetData($txtTSMinDarkElixir, $iMinDark[$TS])
 
+	_GUICtrlComboBox_SetCurSel($cmbSnipeSprint, $iSnipeSprint)
 
     ;attk their king
 	;attk their queen
@@ -638,6 +642,14 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	  GUICtrlSetState($chkDrillZapTH, $GUI_UNCHECKED)
    EndIf
 
+   If $useFFBarchST = 1 Then
+		GUICtrlSetState($chkChangeFF, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkChangeFF, $GUI_UNCHECKED)
+	Endif
+
+	GUICtrlSetData($txtTHpercentCollectors, $percentCollectors)
+
    For $i = 1 to 24
 	  	GUICtrlSetData(Eval("txtDeStyle" & StringRight("0" & $i,2)), $DeDeployPosition[$i-1])
 		If $DeDeployType[$i-1] <> $DeDeployEmptyString Then
@@ -645,8 +657,9 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		 Else
 			_GUICtrlComboBox_SetCurSel(Eval("cmbDeDeploy" & StringRight("0" & $i,2)), $DeDeployEmptyString)
 		 EndIf
-    Next
+   Next
 
+	_GUICtrlComboBox_SetCurSel($cmbSniperTroop, $iSniperTroop)
 	;End Battle Settings------------------------------------------------------------------------
 	GUICtrlSetData($txtTimeStopAtk, $sTimeStopAtk)
 	If $iChkTimeStopAtk = 1 Then
@@ -1486,89 +1499,9 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	EndIf
 	GUICtrlSetData($txtSearchlimit, $itxtSearchlimit)
 	GUICtrlSetData($txtminArmyCapacityTHSnipe, $itxtminArmyCapacityTHSnipe)
+	GUICtrlSetData($txtmaxArmyCapacityTHSnipe, $itxtmaxArmyCapacityTHSnipe)
 	GUICtrlSetData($txtSWTTiles, $itxtSWTtiles)
 	ChkSnipeWhileTrain()
-
-	;Skip Function When Camp x% full top
-
-	If $ichkSkipActive = 1 Then
-		GUICtrlSetState($chkSkipActive, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSkipActive, $GUI_UNCHECKED)
-	EndIf
-
-	If $itxtSkipHowMuch = "" Then
-		GUICtrlSetData($txtSkipHowMuch, "90")
-	Else
-		GUICtrlSetData($txtSkipHowMuch, $itxtSkipHowMuch)
-	EndIf
-
-	If $ichkSkipCollect = 1 Then
-		GUICtrlSetState($chkSkipCollect, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSkipCollect, $GUI_UNCHECKED)
-	EndIf
-
-	If $ichkSkipTombstones = 1 Then
-		GUICtrlSetState($chkSkipTombstones, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSkipTombstones, $GUI_UNCHECKED)
-	EndIf
-
-	If $ichkSkipRearm = 1 Then
-		GUICtrlSetState($chkSkipRearm, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSkipRearm, $GUI_UNCHECKED)
-	EndIf
-
-	If $ichkSkipLab = 1 Then
-		GUICtrlSetState($chkSkipLab, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSkipLab, $GUI_UNCHECKED)
-	EndIf
-
-	If $ichkSkipWall = 1 Then
-		GUICtrlSetState($chkSkipWall, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSkipWall, $GUI_UNCHECKED)
-	EndIf
-
-	If $ichkSkipBuilding = 1 Then
-		GUICtrlSetState($chkSkipBuilding, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSkipBuilding, $GUI_UNCHECKED)
-	EndIf
-
-	If $ichkSkipDonate = 1 Then
-		GUICtrlSetState($chkSkipDonate, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSkipDonate, $GUI_UNCHECKED)
-	EndIf
-	;Skip Function When Camp x% full bottom
-
-	;Greedy Mode Top
-	If $ichkGreedy = 1 Then
-		GUICtrlSetState($chkGreedy, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkGreedy, $GUI_UNCHECKED)
-	EndIf
-
-	If $ichkSWTGreedy = 1 Then
-		GUICtrlSetState($chkSWTGreedy, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkSWTGreedy, $GUI_UNCHECKED)
-	EndIf
-	;Greedy Mode Bottom
-
-;noyax TH Percent top
-	If $iOptAttIfDB = 1 Then
-		GUICtrlSetState($chkAttIfDB, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkAttIfDB, $GUI_UNCHECKED)
-	EndIf
-	GUICtrlSetData($txtAttIfDB, $iPercentThsn)
-;noyax TH Percent bottom
-
 
 	;multilanguage
 	LoadLanguagesComboBox() ; recreate combo box values

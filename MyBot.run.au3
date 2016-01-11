@@ -134,7 +134,6 @@ WEnd
 Func runBot() ;Bot that runs everything in order
 	$TotalTrainedTroops = 0
 	While 1
-;		$greedOneTime = 0
 		$Restart = False
 		$fullArmy = False
 		$CommandStop = -1
@@ -142,7 +141,7 @@ Func runBot() ;Bot that runs everything in order
 		checkMainScreen()
 		If $Restart = True Then ContinueLoop
 
-		If $Is_ClientSyncError = False and $Is_SearchLimit=false Then
+		If $Is_ClientSyncError = False and $Is_SearchLimit=false and $iSnipeSprintCount = 0 Then
 			If BotCommand() Then btnStop()
 			If _Sleep($iDelayRunBot2) Then Return
 			checkMainScreen(False)
@@ -171,66 +170,34 @@ Func runBot() ;Bot that runs everything in order
 				$icmbBotCond = _GUICtrlComboBox_GetCurSel($cmbBotCond)  ; Restore User GUI halt condition after modification for out of elixir
 				ContinueLoop ; Restart bot loop to reset $CommandStop
 			EndIf
-
-
-
-			If _Sleep($iDelayRunBot5) Then Return ;change delay from 5 to 1
+			If _Sleep($iDelayRunBot5) Then Return
 			checkMainScreen(False)
 			If $Restart = True Then ContinueLoop
-
-			Train()
+			Collect()
 			If _Sleep($iDelayRunBot1) Then Return
-			checkMainScreen(False)
 			If $Restart = True Then ContinueLoop
-
-;			Collect()
-;			If _Sleep($iDelayRunBot1) Then Return
-;			If $Restart = True Then ContinueLoop
-;			CheckTombs()
-;			If _Sleep($iDelayRunBot3) Then Return
-;			If $Restart = True Then ContinueLoop
-;			ReArm()
-;			If _Sleep($iDelayRunBot3) Then Return
-;			If $Restart = True Then ContinueLoop
-
+			CheckTombs()
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
+			ReArm()
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
 			ReplayShare($iShareAttackNow)
 			If _Sleep($iDelayRunBot3) Then Return
 			If $Restart = True Then ContinueLoop
 			ReportPushBullet()
 			If _Sleep($iDelayRunBot3) Then Return
 			If $Restart = True Then ContinueLoop
-
-;			DonateCC()
-;			If _Sleep($iDelayRunBot3) Then Return
-;			If $Restart = True Then ContinueLoop
-
-			If $ichkSkipActive = 1 And $CurCamp >= ($TotalCamp * $itxtSkipHowMuch / 100) And $ichkSkipDonate = 1 Then
-
-				Setlog("Skipping Donate Troops")
-			Else
-				If $fullArmy = False Then
-					DonateCC()
-					If _Sleep($iDelayRunBot1) Then Return
-					checkMainScreen(False)
-					If $Restart = True Then ContinueLoop
-				Else
-					If $icmbBotCond = 14 Or $icmbBotCond = 15 And $ichkBotStop = 1 Then
-						DonateCC()
-						If _Sleep($iDelayRunBot1) Then Return
-						checkMainScreen(False)
-						If $Restart = True Then ContinueLoop
-					EndIf
-				EndIf
-			EndIf
-
+			DonateCC()
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
 			If $ichkTrainLightSpell = 1 Then
                 DrillZapSpell() ; Drill Zap
             EndIf
-
-;			If _Sleep($iDelayRunBot1) Then Return
-;			checkMainScreen(False) ; required here due to many possible exits
-;			If $Restart = True Then ContinueLoop
-;			Train()
+			If _Sleep($iDelayRunBot1) Then Return
+			checkMainScreen(False) ; required here due to many possible exits
+			If $Restart = True Then ContinueLoop
+			Train()
 			If _Sleep($iDelayRunBot1) Then Return
 			checkMainScreen(False)
 			If $Restart = True Then ContinueLoop
@@ -253,92 +220,30 @@ Func runBot() ;Bot that runs everything in order
 			If $iUnbreakableMode >= 1 Then
 				If Unbreakable() = True Then ContinueLoop
 			EndIf
-
-
-
-
-			If $ichkSkipActive = 1 And $CurCamp >= ($TotalCamp * $itxtSkipHowMuch / 100) Then
-				If $ichkSkipCollect = 1 Then
-					Setlog("Skipping Collect Resources")
-				Else
-					Collect()
-					If _Sleep($iDelayRunBot1) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
-
-				If $ichkSkipTombstones = 1 Then
-					Setlog("Skipping Clear Tombstones")
-				Else
-					CheckTombs()
-					If _Sleep($iDelayRunBot3) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
-
-				If $ichkSkipRearm = 1 Then
-					Setlog("Skipping ReArming Village")
-				Else
-					ReArm()
-					If _Sleep($iDelayRunBot5) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
-
-				If $ichkSkipLab = 1 Then
-					Setlog("Skipping Laboratory Upgrades")
-				Else
-					Laboratory()
-					If _Sleep($iDelayRunBot3) Then Return
-					checkMainScreen(False) ; required here due to many possible exits
-					If $Restart = True Then ContinueLoop
-				EndIf
-
-				If $ichkSkipBuilding = 1 Then
-					Setlog("Skipping Building Upgrades")
-				Else
-					UpgradeBuilding()
-					If _Sleep($iDelayRunBot3) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
-
-				If $ichkSkipWall = 1 Then
-					Setlog("Skipping Upgrade Walls")
-				Else
-					UpgradeWall()
-					If _Sleep($iDelayRunBot3) Then Return
-					If $Restart = True Then ContinueLoop
-				EndIf
-			Else
-
-				Collect()
-				If _Sleep($iDelayRunBot1) Then Return
-				If $Restart = True Then ContinueLoop
-				CheckTombs()
-				If _Sleep($iDelayRunBot3) Then Return
-				If $Restart = True Then ContinueLoop
-				ReArm()
-				If _Sleep($iDelayRunBot5) Then Return
-				If $Restart = True Then ContinueLoop
-				Laboratory()
-				If _Sleep($iDelayRunBot3) Then Return
-				checkMainScreen(False) ; required here due to many possible exits
-				If $Restart = True Then ContinueLoop
-				UpgradeBuilding()
-				If _Sleep($iDelayRunBot3) Then Return
-				If $Restart = True Then ContinueLoop
-				UpgradeWall()
-				If _Sleep($iDelayRunBot3) Then Return
-				If $Restart = True Then ContinueLoop
-
-				UpgradeHeroes()
-				If _Sleep($iDelayRunBot3) Then Return
-				If $Restart = True Then ContinueLoop
-				PushMsg("CheckBuilderIdle")
-			EndIf
+			Laboratory()
+			If _Sleep($iDelayRunBot3) Then Return
+			checkMainScreen(False) ; required here due to many possible exits
+			If $Restart = True Then ContinueLoop
+			UpgradeHeroes()
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
+			UpgradeBuilding()
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
+			UpgradeWall()
+			If _Sleep($iDelayRunBot3) Then Return
+			If $Restart = True Then ContinueLoop
+			PushMsg("CheckBuilderIdle")
 			Idle()
 			If _Sleep($iDelayRunBot3) Then Return
 			If $Restart = True Then ContinueLoop
 			SaveStatChkTownHall()
 			SaveStatChkDeadBase()
 			If $CommandStop <> 0 And $CommandStop <> 3 Then
+				if $iSnipeSprint > 0 And $OptTrophyMode = 1 Then
+					SetLog("Beginning snipe sprint")
+					$iSnipeSprintCount = 5 * $iSnipeSprint
+				EndIf
 				AttackMain()
 				If $OutOfGold = 1 Then
 					Setlog("Switching to Halt Attack, Stay Online/Collect mode ...", $COLOR_RED)
@@ -353,10 +258,16 @@ Func runBot() ;Bot that runs everything in order
 
 		Else ;When error occours directly goes to attack
 			If $Is_SearchLimit = False Then
-				SetLog("Restarted after Out of Sync Error: Attack Now", $COLOR_RED)
-;				$iNbrOfOoS += 1
-;				UpdateStats()
-;				PushMsg("OutOfSync")
+                If $iSnipeSprintCount>0 Then
+					UpdateStats()
+					SETLOG("Snipe sprints remaining: "& $iSnipeSprintCount)
+					$iSnipeSprintCount = $iSnipeSprintCount - 1
+				Else
+					SetLog("Restarted after Out of Sync Error: Attack Now", $COLOR_RED)
+;				    $iNbrOfOoS += 1
+;				    UpdateStats()
+;				    PushMsg("OutOfSync")
+				EndIf
 			Else
 				If $debugsetlog = 1 Then Setlog("return from searchLimit, restart searches (" & $CurCamp & "/" & $TotalCamp &")",$COLOR_PURPLE)
 				;OPEN ARMY OVERVIEW WITH NEW BUTTON

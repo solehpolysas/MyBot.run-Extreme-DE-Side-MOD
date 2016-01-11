@@ -29,7 +29,6 @@ Func getHeroes() ;Get information about your heroes
         SetLog("Use Warden SLOT n° " & $Warden, $COLOR_PURPLE)
         SetLog("Use CC SLOT n° " & $CC, $COLOR_PURPLE)
     EndIf
-
 EndFunc
 
 Func useHeroesAbility() ;Use the heroes abilities if appropriate
@@ -56,8 +55,7 @@ Func useHeroesAbility() ;Use the heroes abilities if appropriate
 EndFunc
 
 Func useTownHallSnipe() ;End battle after a town hall snipe
-
-	SwitchAttackTHType()
+    SwitchAttackTHType()
 
     If $zoomedin = True Then
         ZoomOut()
@@ -67,7 +65,7 @@ Func useTownHallSnipe() ;End battle after a town hall snipe
     EndIf
 
     ;If $OptTrophyMode = 1 And SearchTownHallLoc() Then Return ;Exit attacking if trophy hunting and not bullymode
-If $iMatchMode = $TS   Then; Return ;Exit attacking if trophy hunting and not bullymode ; edit by Rizor
+
     If ($THusedKing = 0 and $THusedQueen=0) Then
         Setlog("Wait few sec before close attack")
         If _Sleep(random(2,5,1)*1000) Then Return ;wait 2-5 second before exit if king and queen are not dropped
@@ -84,11 +82,10 @@ If $iMatchMode = $TS   Then; Return ;Exit attacking if trophy hunting and not bu
 
     If IsAttackPage() Then ClickP($aSurrenderButton, 1, 0, "#0030") ;Click Surrender
     If _Sleep($iDelayalgorithm_AllTroops3) Then Return
-    If IsEndBattlePage() Then
+	If IsEndBattlePage() Then
         ClickP($aConfirmSurrender, 1, 0, "#0031") ;Click Confirm
         If _Sleep($iDelayalgorithm_AllTroops1) Then Return
-	EndIf
-EndIf
+    EndIf
 EndFunc
 
 Func useSmartDeploy() ;Gets infomation about the red area for Smart Deploy
@@ -150,49 +147,45 @@ Func useSmartDeploy() ;Gets infomation about the red area for Smart Deploy
 
         UpdateStats()
     EndIf
-
 EndFunc
 
 Func getNumberOfSides() ;Returns the number of sides to attack from
     Local $nbSides = 0
 
     Switch $iChkDeploySettings[$iMatchMode]
-        Case 0 ;Single sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Case $eOneSide ;Single sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on a single side", $COLOR_BLUE)
-
             $nbSides = 1
-        Case 1 ;Two sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Case $eTwoSides ;Two sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on two sides", $COLOR_BLUE)
-
             $nbSides = 2
-        Case 2 ;Three sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Case $eThreeSides ;Three sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on three sides", $COLOR_BLUE)
-
             $nbSides = 3
-        Case 3 ;All sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Case $eAllSides ;All sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on all sides", $COLOR_BLUE)
-
             $nbSides = 4
-        Case 4 ;Four Finger ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	    Case $eSmartSave ;Save Troops Style ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			SetLog("Attacking with save troops for collectors", $COLOR_BLUE)
+			$nbSides = 4
+			$saveTroops = 1
+        Case $eFourFinger ;Four Finger ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking four finger fight style", $COLOR_BLUE)
             $nbSides = 5
-
-        Case 5 ;DE Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Case $eDESide ;DE Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on Dark Elixir Side.", $COLOR_BLUE)
-
-            $nbSides = 1
-        Case 6 ;TH Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			$nbSides = 1
+        Case $eTHSide ;TH Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             SetLog("Attacking on Town Hall Side.", $COLOR_BLUE)
-
             $nbSides = 1
     EndSwitch
 
     Return $nbSides
 EndFunc
 
-Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
+Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroops
     ; $ListInfoDeploy = [Troop, No. of Sides, $WaveNb, $MaxWaveNb, $slotsPerEdge]
-    If $iMatchMode = $LB And $iChkDeploySettings[$LB] >= 5 Then ; Customized side wave deployment here for DE and TH side
+    If $iMatchMode = $LB And ($iChkDeploySettings[$LB] = $eDESide Or $iChkDeploySettings[$LB] = $eTHSide) Then ; Customized side wave deployment here for DE and TH side
         If $debugSetlog = 1 Then SetLog("List Deploy for Customized Side attack", $COLOR_PURPLE)
 
         Local $listInfoDeploy[24][5]
@@ -216,7 +209,7 @@ Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
             $listInfoDeploy[$i][3] = $waveCount
             $listInfoDeploy[$i][4] = $DeDeployPosition[$i]
         Next
-    ElseIf $iChkDeploySettings[$iMatchMode] = 4 Then ;Four Finger deployment
+    ElseIf $iChkDeploySettings[$iMatchMode] = $eFourFinger Then ;Four Finger deployment
         If $debugSetlog = 1 Then SetLog("ListDeploy for Four Finger attack", $COLOR_PURPLE)
 
         Local $listInfoDeploy[11][5] = [[$eGiant, $nbSides, 1, 1, 2] _
@@ -230,9 +223,24 @@ Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
             , [$eMini, $nbSides, 1, 1, 0] _
             , [$eGobl, $nbSides, 2, 2, 0] _
             , ["HEROES", 1, 2, 1, 1] _
-            ]
-    Else
-        If $debugSetlog =1 Then SetLog("List Deploy for Standard attacks", $COLOR_PURPLE)
+		]
+    ElseIf $saveTroops = 1 Then ; Save Troops Style
+        If $debugSetlog = 1 Then SetLog("List Deploy for Save Troops attacks", $COLOR_PURPLE)
+
+	    Local $listInfoDeploy[11][5] = [[$eGiant, $nbSides, 1, 1, 2] _
+			, [$eBarb, $nbSides, 1, 2, 0] _
+			, [$eWall, $nbSides, 1, 1, 1] _
+			, [$eArch, $nbSides, 1, 2, 0] _
+			, [$eGobl, $nbSides, 1, 2, 0] _
+			, ["CC", 1, 1, 1, 1] _
+			, [$eHogs, $nbSides, 1, 1, 1] _
+			, [$eWiza, $nbSides, 1, 1, 0] _
+			, [$eMini, $nbSides, 1, 2, 0] _
+			, [$eGobl, $nbSides, 2, 2, 0] _
+			, ["HEROES", 1, 2, 1, 1] _
+		]
+   Else
+        If $debugSetlog = 1 Then SetLog("List Deploy for Standard attacks", $COLOR_PURPLE)
 
         Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 2] _
             , [$eBarb, $nbSides, 1, 2, 0] _
@@ -247,7 +255,7 @@ Func getDeploymentInfo($nbSides) ;Returns the Deployment array for LaunchTroop
             , [$eArch, $nbSides, 2, 2, 0] _
             , [$eGobl, $nbSides, 2, 2, 0] _
             , ["HEROES", 1, 2, 1, 1] _
-            ]
+		]
     EndIf
 
     Return $listInfoDeploy
@@ -260,10 +268,10 @@ Func dropRemainingTroops($nbSides) ;Uses any left over troops
         PrepareAttack($iMatchMode, True) ;Check remaining quantities
         For $i = $eBarb To $eLava ; lauch all remaining troops
             ;If $i = $eBarb Or $i = $eArch Then
-            LauchTroop($i, $nbSides, 0, 1)
+            LaunchTroops($i, $nbSides, 0, 1)
             CheckHeroesHealth()
             ;Else
-            ;     LauchTroop($i, $nbSides, 0, 1, 2)
+            ;     LaunchTroops($i, $nbSides, 0, 1, 2)
             ;EndIf
             If _Sleep($iDelayalgorithm_AllTroops5) Then Return
         Next
@@ -274,11 +282,16 @@ Func deployTroops($nbSides) ;This function is the branch point to new deployment
     ; $ListInfoDeploy = [Troop, No. of Sides, $WaveNb, $MaxWaveNb, $slotsPerEdge]
     Local $listInfoDeploy = getDeploymentInfo($nbSides)
 
-    If $iMatchMode = $LB And $iChkDeploySettings[$LB] >= 5 Then
-       LaunchSideAttackTroop($listInfoDeploy, $CC, $King, $Queen, $Warden)
-    Else
-       LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
-    EndIf
+    Switch $iChkDeploySettings[$iMatchMode]
+		Case $eSmartSave
+			LaunchSaveTroops($listInfoDeploy, $CC, $King, $Queen, $Warden)
+		Case $eFourFinger
+			LaunchFourFinger($listInfoDeploy, $CC, $King, $Queen, $Warden)
+		Case $eDESide, $eTHSide
+			LaunchSideAttack($listInfoDeploy, $CC, $King, $Queen, $Warden)
+		Case Else
+			LaunchStandard($listInfoDeploy, $CC, $King, $Queen, $Warden)
+	EndSwitch
 EndFunc
 
 Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
@@ -297,11 +310,11 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 
     If $nbSides = 0 Then Return; No sides set, so lets just quit
 
-    If ($iChkRedArea[$iMatchMode]) And $iChkDeploySettings[$iMatchMode] < 4 Then
+    If ($iChkRedArea[$iMatchMode]) And $iChkDeploySettings[$iMatchMode] < 5 Then
         useSmartDeploy()
-    ElseIf NOT $iChkRedArea[$iMatchMode] And $iChkDeploySettings[$iMatchMode] = 5 Then ;DE Side - Live Base only ~~~~~~~~~~~~~~~~
+    ElseIf NOT $iChkRedArea[$iMatchMode] And $iChkDeploySettings[$iMatchMode] = 6 Then ;DE Side - Live Base only ~~~~~~~~~~~~~~~~
         GetBuildingEdge($eSideBuildingDES) ; Get DE Storage side when Redline is not used.
-    ElseIf NOT $iChkRedArea[$iMatchMode] And $iChkDeploySettings[$iMatchMode] = 6 Then ;TH Side - Live Base only ~~~~~~~~~~~~~~~~
+    ElseIf NOT $iChkRedArea[$iMatchMode] And $iChkDeploySettings[$iMatchMode] = 7 Then ;TH Side - Live Base only ~~~~~~~~~~~~~~~~
         GetBuildingEdge($eSideBuildingTH) ; Get Townhall side when Redline is not used.
     EndIf
 
